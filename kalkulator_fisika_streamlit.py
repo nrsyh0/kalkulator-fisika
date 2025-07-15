@@ -1,231 +1,196 @@
 # kalkulator_fisika_streamlit.py
+# Jalankan: streamlit run kalkulator_fisika_streamlit.py
+# ------------------------------------------------------
 import streamlit as st
 from PIL import Image
 
-st.set_page_config(page_title="Kalkulator Fisika", layout="centered")
+# ──────────────────────────────────────────────────────
+# KONFIGURASI HALAMAN
+# ──────────────────────────────────────────────────────
+st.set_page_config(page_title="Kalkulator Fisika", layout="wide")
 
-menu = st.sidebar.radio("Navigasi", ("Dashboard", "Kalkulator", "Kuis", "Tentang"))
+# ──────────────────────────────────────────────────────
+# CSS GLOBAL (sidebar, tombol, font, dll.)
+# ──────────────────────────────────────────────────────
+st.markdown("""
+<style>
+/* Sidebar */
+[data-testid=stSidebar] {
+    background-color: #F0F2F6;
+}
+/* Judul sidebar */
+[data-testid=stSidebar] .css-ng1t4o {      /* Streamlit v1.32+ class */
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+/* Tombol utama */
+.stButton>button {
+    background-color:#0059ff;
+    color:white;
+    border:none;
+    padding:0.5rem 1.25rem;
+    border-radius:6px;
+}
+.stButton>button:hover {
+    background-color:#004be0;
+}
+/* Heading warna biru */
+h2,h3,h4 { color:#0059ff; }
+/* Hilangkan footer Streamlit default */
+footer {visibility:hidden;}
+</style>
+""", unsafe_allow_html=True)
 
-# -----------------------------------
+# ──────────────────────────────────────────────────────
+# SIDEBAR NAVIGASI
+# ──────────────────────────────────────────────────────
+st.sidebar.title("📑 Menu")
+menu = st.sidebar.radio(
+    "",
+    ("Dashboard", "Kalkulator", "Kuis", "Tentang"),
+    index=0,
+    format_func=lambda x: f"🏠 {x}" if x=="Dashboard" else f"🧮 {x}" if x=="Kalkulator"
+                          else f"❓ {x}" if x=="Kuis" else "ℹ️ Tentang")
+
+# ──────────────────────────────────────────────────────
 # DASHBOARD
-# -----------------------------------
+# ──────────────────────────────────────────────────────
 if menu == "Dashboard":
     st.title("🏠 Dashboard")
-    st.write("Selamat datang di **Kalkulator Fisika Web**!")
 
-    try:
-        image = Image.open("fisika.jpg")  # Pastikan file ini ada di folder yang sama
-        st.image(image, use_column_width=50)
-    except:
-        st.warning("Gambar tidak ditemukan atau gagal dimuat.")
+    col1, col2 = st.columns([1, 2])
+    with col1:
+        try:
+            img = Image.open("fisika.jpg")   # ganti nama file jika berbeda
+            st.image(img, caption="Ilustrasi Fisika", width=300)
+        except Exception:
+            st.warning("Gambar 'fisika.jpg' belum di‑upload.")
+    with col2:
+        st.markdown("""
+        ### Fitur Aplikasi
+        - **Kalkulator**: hitung kinematika, dinamika, konversi satuan  
+        - **Kuis**: soal pilihan ganda fisika  
+        - **Tentang**: info aplikasi & pengembang  
+        """)
+        st.info("Gunakan menu di sidebar untuk memilih fitur.")
 
-    st.markdown("""
-    ### Fitur Aplikasi
-    - **Kalkulator:** Hitung kinematika, dinamika, dan konversi satuan.
-    - **Kuis:** Uji pemahaman dasar fisika.
-    - **Tentang:** Informasi mengenai aplikasi dan pembuatnya.
-    """)
-    st.info("Gunakan menu di sidebar untuk membuka fitur.")
-
-
-# -----------------------------------
+# ──────────────────────────────────────────────────────
 # KALKULATOR
-# -----------------------------------
+# ──────────────────────────────────────────────────────
 elif menu == "Kalkulator":
     st.title("🧮 Kalkulator Fisika")
-    tab1, tab2, tab3 = st.tabs(["Kinematika", "Dinamika", "Konversi Satuan"])
 
-    # KINEMATIKA
+    tab1, tab2, tab3 = st.tabs(["📏 Kinematika", "⚙️ Dinamika", "🔄 Konversi"])
+
+    # === KINEMATIKA ===
     with tab1:
         st.header("Kalkulator Kinematika")
-        kin_mode = st.selectbox("Pilih yang ingin dihitung:", ["Jarak (s)", "Kecepatan (v)", "Waktu (t)", "Percepatan (a)"])
-        if kin_mode == "Jarak (s)":
+        opsi = st.selectbox("Besaran:", ["Jarak (s)", "Kecepatan (v)", "Waktu (t)", "Percepatan (a)"])
+        if opsi == "Jarak (s)":
             v = st.number_input("Kecepatan (m/s)", step=0.1)
             t = st.number_input("Waktu (s)", step=0.1)
-            if st.button("Hitung Jarak"):
-                st.success(f"Jarak = {v * t:.2f} meter")
-        elif kin_mode == "Kecepatan (v)":
-            s = st.number_input("Jarak (m)", step=0.1)
-            t = st.number_input("Waktu (s)", step=0.1)
-            if t != 0 and st.button("Hitung Kecepatan"):
-                st.success(f"Kecepatan = {s / t:.2f} m/s")
-        elif kin_mode == "Waktu (t)":
-            s = st.number_input("Jarak (m)", step=0.1)
-            v = st.number_input("Kecepatan (m/s)", step=0.1)
-            if v != 0 and st.button("Hitung Waktu"):
-                st.success(f"Waktu = {s / v:.2f} detik")
-        elif kin_mode == "Percepatan (a)":
-            v1 = st.number_input("Kecepatan awal v1 (m/s)", step=0.1)
-            v2 = st.number_input("Kecepatan akhir v2 (m/s)", step=0.1)
-            t = st.number_input("Waktu (s)", step=0.1)
-            if t != 0 and st.button("Hitung Percepatan"):
-                st.success(f"Percepatan = {(v2 - v1) / t:.2f} m/s²")
+            if st.button("Hitung"):
+                st.success(f"Jarak = {v*t:.2f} m")
+        elif opsi == "Kecepatan (v)":
+            s = st.number_input("Jarak (m)")
+            t = st.number_input("Waktu (s)")
+            if st.button("Hitung") and t:
+                st.success(f"Kecepatan = {s/t:.2f} m/s")
+        elif opsi == "Waktu (t)":
+            s = st.number_input("Jarak (m)")
+            v = st.number_input("Kecepatan (m/s)")
+            if st.button("Hitung") and v:
+                st.success(f"Waktu = {s/v:.2f} s")
+        else:
+            v1 = st.number_input("v₁ (m/s)")
+            v2 = st.number_input("v₂ (m/s)")
+            t  = st.number_input("Δt (s)")
+            if st.button("Hitung") and t:
+                st.success(f"Percepatan = {(v2-v1)/t:.2f} m/s²")
 
-    # DINAMIKA
+    # === DINAMIKA ===
     with tab2:
         st.header("Kalkulator Dinamika")
-        dyn_mode = st.selectbox("Pilih yang ingin dihitung:", ["Gaya (F)", "Tekanan (P)", "Energi Kinetik (Ek)"])
-        if dyn_mode == "Gaya (F)":
-            m = st.number_input("Massa (kg)", step=0.1)
-            a = st.number_input("Percepatan (m/s²)", step=0.1)
-            if st.button("Hitung Gaya"):
-                st.success(f"Gaya = {m * a:.2f} Newton")
-        elif dyn_mode == "Tekanan (P)":
-            F = st.number_input("Gaya (N)", step=0.1)
-            A = st.number_input("Luas (m²)", step=0.01)
-            if A != 0 and st.button("Hitung Tekanan"):
-                st.success(f"Tekanan = {F / A:.2f} Pascal")
-        elif dyn_mode == "Energi Kinetik (Ek)":
-            m = st.number_input("Massa (kg)", step=0.1)
-            v = st.number_input("Kecepatan (m/s)", step=0.1)
-            if st.button("Hitung Energi Kinetik"):
-                st.success(f"Energi Kinetik = {0.5 * m * v**2:.2f} Joule")
-
-    # KONVERSI SATUAN
-    with tab3:
-        st.header("📏 Konversi Satuan Fisika")
-        jenis = st.selectbox("Jenis Konversi", ["Energi", "Tekanan", "Panjang", "Waktu"])
-
-        if jenis == "Energi":
-            val = st.number_input("Nilai Energi", step=0.1)
-            satuan = {
-                "joule": 1,
-                "kjoule": 1e3,
-                "kalori": 4.184,
-                "kwh": 3.6e6,
-                "BTU": 1055
-            }
-        elif jenis == "Tekanan":
-            val = st.number_input("Nilai Tekanan", step=0.1)
-            satuan = {
-                "pa": 1,
-                "kpa": 1e3,
-                "atm": 101325,
-                "bar": 1e5,
-                "mmhg": 133.322
-            }
-        elif jenis == "Panjang":
-            val = st.number_input("Nilai Panjang", step=0.1)
-            satuan = {
-                "meter": 1,
-                "km": 1e3,
-                "cm": 1e-2,
-                "mm": 1e-3,
-                "inch": 0.0254,
-                "ft": 0.3048
-            }
+        opsi = st.selectbox("Besaran:", ["Gaya (F)", "Tekanan (P)", "Energi Kinetik (Ek)"])
+        if opsi == "Gaya (F)":
+            m = st.number_input("Massa (kg)")
+            a = st.number_input("Percepatan (m/s²)")
+            if st.button("Hitung"):
+                st.success(f"Gaya = {m*a:.2f} N")
+        elif opsi == "Tekanan (P)":
+            F = st.number_input("Gaya (N)")
+            A = st.number_input("Luas (m²)")
+            if st.button("Hitung") and A:
+                st.success(f"Tekanan = {F/A:.2f} Pa")
         else:
-            val = st.number_input("Nilai Waktu", step=0.1)
-            satuan = {
-                "detik": 1,
-                "menit": 60,
-                "jam": 3600,
-                "hari": 86400
-            }
+            m = st.number_input("Massa (kg)")
+            v = st.number_input("Kecepatan (m/s)")
+            if st.button("Hitung"):
+                st.success(f"Ek = {0.5*m*v**2:.2f} J")
 
-        from_unit = st.selectbox("Dari", satuan.keys())
-        to_unit = st.selectbox("Ke", satuan.keys())
-
+    # === KONVERSI ===
+    with tab3:
+        st.header("Konversi Satuan")
+        kategori = st.selectbox("Kategori", ["Panjang", "Massa", "Waktu", "Energi", "Tekanan"])
+        data = {
+            "Panjang": {"m":1,"km":1e3,"cm":1e-2,"mm":1e-3,"in":0.0254,"ft":0.3048},
+            "Massa":   {"kg":1,"g":1e-3,"mg":1e-6,"lb":0.453592},
+            "Waktu":   {"s":1,"min":60,"h":3600,"day":86400},
+            "Energi":  {"J":1,"kJ":1e3,"cal":4.184,"kWh":3.6e6},
+            "Tekanan": {"Pa":1,"kPa":1e3,"bar":1e5,"atm":101325,"mmHg":133.322}
+        }
+        val = st.number_input("Nilai:")
+        satuan_from = st.selectbox("Dari", data[kategori].keys())
+        satuan_to   = st.selectbox("Ke",   data[kategori].keys())
         if st.button("Konversi"):
-            hasil = val * satuan[from_unit] / satuan[to_unit]
-            st.success(f"Hasil: {hasil:.4f} {to_unit}")
+            out = val * data[kategori][satuan_from] / data[kategori][satuan_to]
+            st.success(f"Hasil: {out:.4f} {satuan_to}")
 
-# -----------------------------------
+# ──────────────────────────────────────────────────────
 # KUIS
-# -----------------------------------
+# ──────────────────────────────────────────────────────
 elif menu == "Kuis":
     st.title("❓ Kuis Fisika")
+    soal = [
+        ("Satuan SI gaya adalah ...", ["Newton","Joule","Pascal","Watt"], 0),
+        ("1 km = ... m", ["10","100","1 000","10 000"], 2),
+        ("Rumus Ek?", ["mv","mv²","0.5mv²","2mv²"], 2),
+        ("1 kWh = ... J", ["3600","3.6e6","1e6","1000"], 1),
+        ("Tekanan = ...", ["F/A","F·A","A/F","m·a"], 0),
+    ]  # tambah sampai 20 jika perlu
 
-    questions = [
-        {
-            "q": "Sebuah benda bergerak 2 m/s selama 5 detik. Jarak?",
-            "options": ["2 m", "5 m", "10 m", "7,5 m"],
-            "ans": 2
-        },
-        {
-            "q": "Massa 2 kg, percepatan 3 m/s². Gaya?",
-            "options": ["6 N", "1,5 N", "5 N", "9 N"],
-            "ans": 0
-        },
-        {
-            "q": "1 atm berapa mmHg?",
-            "options": ["76", "760", "101325", "1"],
-            "ans": 1
-        },
-        {
-            "q": "1 km = ... meter?",
-            "options": ["10", "100", "1000", "10000"],
-            "ans": 2
-        },
-        {
-            "q": "Kecepatan = ...?",
-            "options": ["Jarak x Waktu", "Jarak / Waktu", "Waktu / Jarak", "Gaya x Massa"],
-            "ans": 1
-        },
-        {
-            "q": "Energi Kinetik = ...?",
-            "options": ["mv", "0.5mv²", "ma", "mv²"],
-            "ans": 1
-        },
-        {
-            "q": "1 kWh = ... joule?",
-            "options": ["3600", "3.6e6", "1000", "36000"],
-            "ans": 1
-        },
-        {
-            "q": "Satuan SI gaya?",
-            "options": ["Joule", "Watt", "Pascal", "Newton"],
-            "ans": 3
-        },
-        {
-            "q": "1 kaki = ... meter?",
-            "options": ["0.3048", "0.3", "1.0", "2.54"],
-            "ans": 0
-        },
-        {
-            "q": "1 jam = ... detik?",
-            "options": ["3600", "60", "1800", "1000"],
-            "ans": 0
-        },
-    ]
+    if "idx" not in st.session_state:
+        st.session_state.idx = 0
+        st.session_state.score = 0
 
-    if "quiz_idx" not in st.session_state:
-        st.session_state.quiz_idx = 0
-        st.session_state.quiz_score = 0
-
-    if st.session_state.quiz_idx < len(questions):
-        q = questions[st.session_state.quiz_idx]
-        st.subheader(f"Soal {st.session_state.quiz_idx + 1}")
-        choice = st.radio(q["q"], q["options"])
-        if st.button("Kirim Jawaban"):
-            if choice == q["options"][q["ans"]]:
+    if st.session_state.idx < len(soal):
+        q, opts, ans = soal[st.session_state.idx]
+        st.subheader(f"Soal {st.session_state.idx+1}")
+        choice = st.radio(q, opts)
+        if st.button("Kirim"):
+            if choice == opts[ans]:
                 st.success("Benar!")
-                st.session_state.quiz_score += 1
+                st.session_state.score += 1
             else:
-                st.error(f"Salah. Jawaban: {q['options'][q['ans']]}")
-            st.session_state.quiz_idx += 1
+                st.error(f"Salah. Jawaban: {opts[ans]}")
+            st.session_state.idx += 1
             st.experimental_rerun()
     else:
-        st.success(f"Kuis selesai! Skor: {st.session_state.quiz_score}/{len(questions)}")
+        st.success(f"Kuis selesai! Skor: {st.session_state.score}/{len(soal)}")
         if st.button("Ulangi"):
-            st.session_state.quiz_idx = 0
-            st.session_state.quiz_score = 0
+            st.session_state.idx = 0
+            st.session_state.score = 0
             st.experimental_rerun()
 
-# -----------------------------------
+# ──────────────────────────────────────────────────────
 # TENTANG
-# -----------------------------------
+# ──────────────────────────────────────────────────────
 else:
     st.title("ℹ️ Tentang Aplikasi")
     st.markdown("""
-    **Kalkulator Fisika Web** dibuat oleh **Aisyah** untuk membantu pelajar memahami konsep dasar fisika secara interaktif.
+    **Kalkulator Fisika Web** dibuat oleh **Aisyah**  
+    untuk membantu belajar konsep fisika melalui kalkulator & kuis interaktif.
 
-    **Fitur:**
-    - Perhitungan Kinematika, Dinamika
-    - Konversi Satuan
-    - Kuis Fisika Interaktif
-
-    **Teknologi:**
-    - Python
-    - Streamlit
+    - **Teknologi**: Python • Streamlit  
+    - **Lisensi** : MIT
     """)
