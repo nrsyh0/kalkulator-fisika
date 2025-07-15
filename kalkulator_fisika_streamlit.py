@@ -14,7 +14,7 @@ if menu == "Dashboard":
     st.write("Selamat datang di **Kalkulator Fisika Web**!")
 
 try:
-    image = Image.open("fisika.jpg")  # Ganti dengan nama file gambarmu
+    image = Image.open("fisika.jpg")  # fisika.jpg
     st.image(image, caption="Ilustrasi Fisika", use_column_width=True)
 except:
     st.warning("Gambar tidak ditemukan atau gagal dimuat.")
