@@ -13,7 +13,7 @@ menu = st.sidebar.radio("Navigasi", ("Dashboard", "Kalkulator", "Kuis", "Tentang
 # DASHBOARD
 # ------------------------------------------------------
 if menu == "Dashboard":
-    st.title("🏠 Dashboard")
+    st.markdown(":blue-badge[Home]")
     st.write("Selamat datang di **Kalkulator Fisika Web**!")
     st.markdown("""
     ### Fitur Aplikasi
