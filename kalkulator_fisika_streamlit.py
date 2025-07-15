@@ -13,11 +13,11 @@ if menu == "Dashboard":
     st.title("🏠 Dashboard")
     st.write("Selamat datang di **Kalkulator Fisika Web**!")
 
-    try:
-        image = Image.open("59789c64-09f8-4cb1-993c-df6bc87810fd.jpg")
-        st.image(image, caption="Ilustrasi Fisika", use_column_width=True)
-    except:
-        st.warning("Gambar tidak ditemukan atau gagal dimuat.")
+try:
+    image = Image.open("fisika.jpg")  # Ganti dengan nama file gambarmu
+    st.image(image, caption="Ilustrasi Fisika", use_column_width=True)
+except:
+    st.warning("Gambar tidak ditemukan atau gagal dimuat.")
 
     st.markdown("""
     ### Fitur Aplikasi
