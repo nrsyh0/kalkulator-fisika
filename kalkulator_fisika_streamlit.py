@@ -20,7 +20,7 @@ if menu == "🏠 Beranda":
 
     try:
         image = Image.open("fisika.jpg")
-        st.image(image, caption="Ilustrasi Fisika", use_column_width=False, width=10)
+        st.image(image, caption="Ilustrasi Fisika", use_column_width=False, width=)
     except:
         st.warning("Gambar tidak ditemukan atau gagal dimuat.")
 
