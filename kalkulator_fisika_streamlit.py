@@ -4,173 +4,179 @@ from PIL import Image
 import math
 
 st.set_page_config(page_title="Kalkulator Fisika", layout="centered")
-st.markdown("""
-    <style>
-        .stApp {
-            background-color: #f5f5fa;
-            font-family: 'Segoe UI', sans-serif;
-        }
-        h1, h2, h3 {
-            color: #003366;
-        }
-        .sidebar .sidebar-content {
-            background-color: #ddeeff;
-        }
-    </style>
-""", unsafe_allow_html=True)
 
-menu = st.sidebar.radio("Navigasi", ("Dashboard", "Kalkulator", "Kuis", "Tentang"))
+menu = st.sidebar.radio("🔍 **Navigasi**", ("🏠 Dashboard", "🧮 Kalkulator", "❓ Kuis", "ℹ️ Tentang Aplikasi"))
 
-# -------------------- DASHBOARD --------------------
-if menu == "Dashboard":
-    st.title("🏠 Dashboard")
-    st.write("Selamat datang di **Kalkulator Fisika Interaktif**!")
+# -----------------------------------
+# DASHBOARD
+# -----------------------------------
+if menu == "🏠 Dashboard":
+    st.title("Kalkulator Fisika 📊")
+    st.markdown("""
+    Selamat datang di aplikasi **Kalkulator Fisika Interaktif**! 🎉
+
+    Aplikasi ini dirancang khusus untuk membantu siswa memahami konsep dasar fisika melalui kalkulasi, konversi satuan, dan kuis interaktif. Gunakan menu di samping untuk menavigasi fitur.
+    """)
 
     try:
         image = Image.open("fisika.jpg")
-        st.image(image, caption="Ilustrasi Fisika", use_column_width=True)
+        st.image(image, caption="Ilustrasi Fisika", use_column_width=False, width=500)
     except:
-        st.warning("Gambar tidak ditemukan.")
+        st.warning("Gambar tidak ditemukan atau gagal dimuat.")
 
     st.markdown("""
-    ### Fitur:
-    - 💡 **Kalkulator Fisika**: Kinematika, Dinamika, Konversi Satuan
-    - 🧠 **Kuis Interaktif**: Uji pemahaman konsep
-    - 📘 **Tentang**: Penjelasan fitur dan materi
+    ### 🔧 Fitur Utama:
+    - 📐 Kalkulator Kinematika & Dinamika
+    - 🔁 Konversi Satuan
+    - 🧠 Kuis Fisika Pilihan Ganda
+    - 📘 Penjelasan Materi
+    - 📩 Hubungi Kami
     """)
 
-# -------------------- KALKULATOR --------------------
-elif menu == "Kalkulator":
+# -----------------------------------
+# KALKULATOR
+# -----------------------------------
+elif menu == "🧮 Kalkulator":
     st.title("🧮 Kalkulator Fisika")
     tab1, tab2, tab3 = st.tabs(["Kinematika", "Dinamika", "Konversi Satuan"])
 
-    # Kinematika
+    # KINEMATIKA
     with tab1:
-        st.header("Kinematika")
-        opsi = st.selectbox("Pilih perhitungan:", ["Jarak (s)", "Kecepatan (v)", "Waktu (t)", "Percepatan (a)"])
-        if opsi == "Jarak (s)":
+        st.header("📐 Kalkulator Kinematika")
+        kin_mode = st.selectbox("Pilih yang ingin dihitung:", ["Jarak (s)", "Kecepatan (v)", "Waktu (t)", "Percepatan (a)"])
+        if kin_mode == "Jarak (s)":
             v = st.number_input("Kecepatan (m/s)", step=0.1)
             t = st.number_input("Waktu (s)", step=0.1)
-            if st.button("Hitung", key="s"):
+            if st.button("Hitung Jarak"):
                 st.success(f"Jarak = {v * t:.2f} meter")
-        elif opsi == "Kecepatan (v)":
+        elif kin_mode == "Kecepatan (v)":
             s = st.number_input("Jarak (m)", step=0.1)
             t = st.number_input("Waktu (s)", step=0.1)
-            if st.button("Hitung", key="v") and t != 0:
+            if t != 0 and st.button("Hitung Kecepatan"):
                 st.success(f"Kecepatan = {s / t:.2f} m/s")
-        elif opsi == "Waktu (t)":
+        elif kin_mode == "Waktu (t)":
             s = st.number_input("Jarak (m)", step=0.1)
             v = st.number_input("Kecepatan (m/s)", step=0.1)
-            if st.button("Hitung", key="t") and v != 0:
+            if v != 0 and st.button("Hitung Waktu"):
                 st.success(f"Waktu = {s / v:.2f} detik")
-        elif opsi == "Percepatan (a)":
+        elif kin_mode == "Percepatan (a)":
             v1 = st.number_input("Kecepatan awal v1 (m/s)", step=0.1)
             v2 = st.number_input("Kecepatan akhir v2 (m/s)", step=0.1)
             t = st.number_input("Waktu (s)", step=0.1)
-            if st.button("Hitung", key="a") and t != 0:
+            if t != 0 and st.button("Hitung Percepatan"):
                 st.success(f"Percepatan = {(v2 - v1) / t:.2f} m/s²")
 
-    # Dinamika
+    # DINAMIKA
     with tab2:
-        st.header("Dinamika")
-        opsi = st.selectbox("Pilih perhitungan:", ["Gaya (F)", "Tekanan (P)", "Energi Kinetik (Ek)"])
-        if opsi == "Gaya (F)":
+        st.header("⚙️ Kalkulator Dinamika")
+        dyn_mode = st.selectbox("Pilih yang ingin dihitung:", ["Gaya (F)", "Tekanan (P)", "Energi Kinetik (Ek)"])
+        if dyn_mode == "Gaya (F)":
             m = st.number_input("Massa (kg)", step=0.1)
             a = st.number_input("Percepatan (m/s²)", step=0.1)
-            if st.button("Hitung", key="f"):
+            if st.button("Hitung Gaya"):
                 st.success(f"Gaya = {m * a:.2f} Newton")
-        elif opsi == "Tekanan (P)":
+        elif dyn_mode == "Tekanan (P)":
             F = st.number_input("Gaya (N)", step=0.1)
             A = st.number_input("Luas (m²)", step=0.01)
-            if A != 0 and st.button("Hitung", key="p"):
+            if A != 0 and st.button("Hitung Tekanan"):
                 st.success(f"Tekanan = {F / A:.2f} Pascal")
-        elif opsi == "Energi Kinetik (Ek)":
+        elif dyn_mode == "Energi Kinetik (Ek)":
             m = st.number_input("Massa (kg)", step=0.1)
             v = st.number_input("Kecepatan (m/s)", step=0.1)
-            if st.button("Hitung", key="ek"):
-                st.success(f"Energi Kinetik = {0.5 * m * v ** 2:.2f} Joule")
+            if st.button("Hitung Energi Kinetik"):
+                st.success(f"Energi Kinetik = {0.5 * m * v**2:.2f} Joule")
 
-    # Konversi
+    # KONVERSI SATUAN
     with tab3:
-        st.header("Konversi Satuan")
+        st.header("📏 Konversi Satuan Fisika")
         jenis = st.selectbox("Jenis Konversi", ["Energi", "Tekanan", "Panjang", "Waktu"])
+
         satuan_dict = {
-            "Energi": {"joule": 1, "kjoule": 1e3, "kalori": 4.184, "kwh": 3.6e6},
-            "Tekanan": {"pa": 1, "kpa": 1e3, "atm": 101325, "bar": 1e5},
-            "Panjang": {"m": 1, "km": 1e3, "cm": 1e-2, "inch": 0.0254},
+            "Energi": {"joule": 1, "kjoule": 1e3, "kalori": 4.184, "kwh": 3.6e6, "BTU": 1055},
+            "Tekanan": {"pa": 1, "kpa": 1e3, "atm": 101325, "bar": 1e5, "mmhg": 133.322},
+            "Panjang": {"meter": 1, "km": 1e3, "cm": 1e-2, "mm": 1e-3, "inch": 0.0254, "ft": 0.3048},
             "Waktu": {"detik": 1, "menit": 60, "jam": 3600, "hari": 86400},
         }
-        val = st.number_input(f"Nilai {jenis}", step=0.1)
-        satuan = satuan_dict[jenis]
-        dari = st.selectbox("Dari", satuan.keys())
-        ke = st.selectbox("Ke", satuan.keys())
-        if st.button("Konversi", key="konv"):
-            hasil = val * satuan[dari] / satuan[ke]
-            st.success(f"Hasil: {hasil:.4f} {ke}")
 
-# -------------------- KUIS --------------------
-elif menu == "Kuis":
-    st.title("❓ Kuis Fisika")
-    
-    soal = [
-        {"q": "Sebuah benda bermassa 10 kg di lantai datar. Gaya normal?", "a": "98 N"},
-        {"q": "Benda 10 kg di bidang miring 53°. Gaya normal?", "a": "~59 N"},
-        {"q": "Kecepatan awal 10 m/s, berhenti dalam 20 s. Perlambatan dan jarak?", "a": "0.5 m/s² dan 100 m"},
-        {"q": "Benda jatuh bebas dari 20 m. Waktu dan kecepatan saat jatuh?", "a": "2 s dan 20 m/s"},
+        val = st.number_input(f"Nilai {jenis}", step=0.1)
+        from_unit = st.selectbox("Dari", satuan_dict[jenis].keys(), key="from_"+jenis)
+        to_unit = st.selectbox("Ke", satuan_dict[jenis].keys(), key="to_"+jenis)
+
+        if st.button("Konversi"):
+            hasil = val * satuan_dict[jenis][from_unit] / satuan_dict[jenis][to_unit]
+            st.success(f"Hasil: {hasil:.4f} {to_unit}")
+
+# -----------------------------------
+# KUIS
+# -----------------------------------
+elif menu == "❓ Kuis":
+    st.title("🧠 Kuis Fisika - Pilihan Ganda")
+
+    questions = [
+        {
+            "q": "Sebuah benda bermassa 10 kg diletakkan di atas permukaan datar. Gaya normalnya?",
+            "options": ["10 N", "100 N", "9.8 N", "98 N"],
+            "ans": 3
+        },
+        {
+            "q": "Sebuah benda jatuh dari ketinggian 20 m. Waktu jatuhnya?",
+            "options": ["2 s", "4 s", "3 s", "6 s"],
+            "ans": 0
+        },
+        {
+            "q": "Benda dilempar vertikal ke atas dengan v = 20 m/s. Waktu sampai titik tertinggi?",
+            "options": ["1 s", "2 s", "3 s", "4 s"],
+            "ans": 1
+        }
     ]
 
-    if "idx" not in st.session_state:
-        st.session_state.idx = 0
-        st.session_state.score = 0
+    if "quiz_idx" not in st.session_state:
+        st.session_state.quiz_idx = 0
+        st.session_state.quiz_score = 0
 
-    if st.session_state.idx < len(soal):
-        st.subheader(f"Soal {st.session_state.idx + 1}")
-        q = soal[st.session_state.idx]
-        st.write(q["q"])
-        jawaban = st.text_input("Jawabanmu:", key=f"jawaban_{st.session_state.idx}")
-        if st.button("Kirim Jawaban", key=f"kirim_{st.session_state.idx}"):
-            if jawaban.strip().lower() in q["a"].lower():
-                st.success("Benar!")
-                st.session_state.score += 1
+    if st.session_state.quiz_idx < len(questions):
+        q = questions[st.session_state.quiz_idx]
+        st.subheader(f"Soal {st.session_state.quiz_idx + 1}")
+        choice = st.radio(q["q"], q["options"], key=st.session_state.quiz_idx)
+        if st.button("Kirim Jawaban"):
+            if choice == q["options"][q["ans"]]:
+                st.success("✅ Benar!")
+                st.session_state.quiz_score += 1
             else:
-                st.error(f"Salah. Jawaban: {q['a']}")
-            st.session_state.idx += 1
+                st.error(f"❌ Salah. Jawaban: {q['options'][q['ans']]}")
+            st.session_state.quiz_idx += 1
             st.experimental_rerun()
     else:
-        st.success(f"Skor akhir: {st.session_state.score}/{len(soal)}")
+        st.success(f"Kuis selesai! Skor: {st.session_state.quiz_score}/{len(questions)}")
         if st.button("Ulangi Kuis"):
-            st.session_state.idx = 0
-            st.session_state.score = 0
+            st.session_state.quiz_idx = 0
+            st.session_state.quiz_score = 0
             st.experimental_rerun()
 
-# -------------------- TENTANG --------------------
+# -----------------------------------
+# TENTANG APLIKASI
+# -----------------------------------
 else:
-    st.title("ℹ️ Tentang Aplikasi")
+    st.title("📘 Tentang Aplikasi")
     st.markdown("""
-    ## 📘 Deskripsi Aplikasi
-    Aplikasi ini adalah alat bantu belajar fisika interaktif.
+    ### 🧪 Materi yang Tercakup
+    - **Kinematika:** Percepatan, Kecepatan, Jarak, dan Waktu
+    - **Dinamika:** Gaya, Tekanan, dan Energi Kinetik
+    - **Konversi Satuan:** Panjang, Waktu, Tekanan, Energi
 
-    ### 🧮 Kinematika
-    - Menghitung **jarak**, **kecepatan**, **waktu**, dan **percepatan**.
+    ### 🧠 Tentang Kuis Fisika
+    Kuis ini terdiri dari soal pilihan ganda berbasis konsep dasar fisika. Tujuannya untuk melatih pemahaman dan memperkuat konsep belajar.
 
-    ### 💥 Dinamika
-    - Menghitung **gaya**, **tekanan**, dan **energi kinetik**.
+    ### 📚 Cara Menggunakan Aplikasi
+    1. Pilih menu fitur di sidebar kiri
+    2. Masukkan nilai sesuai satuan yang diminta
+    3. Klik tombol **Hitung** untuk melihat hasilnya
+    4. Gunakan menu kuis untuk uji kemampuanmu!
 
-    ### 🔄 Konversi Satuan
-    - Konversi **energi**, **tekanan**, **panjang**, dan **waktu** antar satuan umum.
-
-    ### ❓ Kuis
-    - Soal-soal konsep kinematika, gaya normal, dan gerak vertikal.
-    - Melatih logika dan pemahaman rumus.
-
-    ## 🔧 Cara Menggunakan Aplikasi
-    1. Pilih menu dari sidebar: Dashboard, Kalkulator, Kuis, atau Tentang.
-    2. Masukkan nilai yang diminta sesuai konteks.
-    3. Klik tombol "Hitung" atau "Konversi".
-    4. Buka halaman Kuis dan jawab pertanyaan.
-
-    ## 📩 Hubungi Kami
-    Silakan tinggalkan pesan Anda:
-    - Email: **aisyah@example.com**
-    - Instagram: **@aisyah_fisika**
+    ### 📩 Hubungi Kami
+    Silakan tinggalkan pesan Anda jika ada saran atau pertanyaan:
     """)
+    email = st.text_input("Email Anda")
+    pesan = st.text_area("Pesan Anda")
+    if st.button("Kirim Pesan"):
+        st.success("Pesan berhasil dikirim. Terima kasih telah menghubungi kami!")
