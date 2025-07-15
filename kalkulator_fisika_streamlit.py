@@ -15,7 +15,7 @@ if menu == "Dashboard":
 
     try:
         image = Image.open("fisika.jpg")  # Pastikan file ini ada di folder yang sama
-        st.image(image, use_column_width=300)
+        st.image(image, use_column_width=50)
     except:
         st.warning("Gambar tidak ditemukan atau gagal dimuat.")
 
