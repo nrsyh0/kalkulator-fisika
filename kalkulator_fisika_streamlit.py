@@ -5,22 +5,22 @@ import math
 
 st.set_page_config(page_title="Kalkulator Fisika", layout="centered")
 
-menu = st.sidebar.radio("🔍 **Navigasi**", ("🏠 Dashboard", "🧮 Kalkulator", "❓ Kuis", "ℹ️ Tentang Aplikasi"))
+menu = st.sidebar.radio("🔍 **Navigasi**", ("🏠 Beranda", "🧮 Kalkulator", "❓ Kuis", "ℹ️ Tentang Aplikasi"))
 
 # -----------------------------------
-# DASHBOARD
+# BERANDA
 # -----------------------------------
-if menu == "🏠 Dashboard":
+if menu == "🏠 Beranda":
     st.title("Kalkulator Fisika 📊")
     st.markdown("""
-    Selamat datang di aplikasi **Kalkulator Fisika Interaktif**! 🎉
+    Selamat datang di aplikasi **Kalkulator Fisika **! 
 
-    Aplikasi ini dirancang khusus untuk membantu siswa memahami konsep dasar fisika melalui kalkulasi, konversi satuan, dan kuis interaktif. Gunakan menu di samping untuk menavigasi fitur.
+    Aplikasi ini dirancang khusus untuk membantu siswa ataupun mahasiswa memahami konsep dasar fisika melalui kalkulasi, konversi satuan, dan kuis interaktif. Gunakan menu di samping untuk menavigasi fitur.
     """)
 
     try:
         image = Image.open("fisika.jpg")
-        st.image(image, caption="Ilustrasi Fisika", use_column_width=False, width=500)
+        st.image(image, caption="Ilustrasi Fisika", use_column_width=False, width=10)
     except:
         st.warning("Gambar tidak ditemukan atau gagal dimuat.")
 
