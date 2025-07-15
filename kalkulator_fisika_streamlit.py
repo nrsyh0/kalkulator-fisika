@@ -17,13 +17,12 @@ if menu == "🏠 Beranda":
 
     Aplikasi ini dirancang khusus untuk membantu siswa ataupun mahasiswa memahami konsep dasar fisika melalui kalkulasi, konversi satuan, dan kuis interaktif. Gunakan menu di samping untuk menavigasi fitur.
     """)
-
- try:
-        image = Image.open("fisika.jpg")
+try:
+        image = Image.open("fisika.jpg")  # Pastikan file ini ada di folder yang sama
         st.image(image, use_column_width=50)
     except:
         st.warning("Gambar tidak ditemukan atau gagal dimuat.")
-
+ 
     st.markdown("""
     ### 🔧 Fitur Utama:
     - 📐 Kalkulator Kinematika & Dinamika
