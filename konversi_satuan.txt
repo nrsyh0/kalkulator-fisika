@@ -1,0 +1,167 @@
+# Konversi Satuan Fisika Umum
+
+## 1. Konversi Satuan Panjang
+
+Satuan SI: **Meter (m)**
+
+* 1 kilometer (km) = 10^3 meter (m)
+* 1 hektometer (hm) = 10^2 meter (m)
+* 1 dekameter (dam) = 10^1 meter (m)
+* 1 desimeter (dm) = 10^-1 meter (m)
+* 1 sentimeter (cm) = 10^-2 meter (m)
+* 1 milimeter (mm) = 10^-3 meter (m)
+* 1 mikrometer (μm) = 10^-6 meter (m)
+* 1 nanometer (nm) = 10^-9 meter (m)
+* 1 angstrom (Å) = 10^-10 meter (m)
+* 1 pikometer (pm) = 10^-12 meter (m)
+* 1 fermi (fm) = 10^-15 meter (m)
+
+Konversi ke non‑SI:
+
+* 1 inci (in) = 2.54 cm = 0.0254 m
+* 1 kaki (ft) = 12 in = 30.48 cm = 0.3048 m
+* 1 yard (yd) = 3 ft = 0.9144 m
+* 1 mil (mi) = 1609.34 m = 1.60934 km
+* 1 mil laut (nmi) = 1852 m = 1.852 km
+* 1 tahun cahaya (ly) = 9.46 × 10^15 m
+* 1 unit astronomi (AU) = 1.496 × 10^11 m
+* 1 parsec (pc) = 3.086 × 10^16 m = 3.26 ly
+
+## 2. Konversi Satuan Massa
+
+Satuan SI: **Kilogram (kg)**
+
+* 1 ton = 1000 kg
+* 1 kuintal = 100 kg
+* 1 gram (g) = 10^-3 kg
+* 1 miligram (mg) = 10^-6 kg
+* 1 pon (lb) = 0.453592 kg
+* 1 ons (oz) = 28.3495 g = 0.0283495 kg
+* 1 slug = 14.59 kg
+
+## 3. Konversi Satuan Waktu
+
+Satuan SI: **Sekon (s)**
+
+* 1 menit (min) = 60 s
+* 1 jam (h) = 60 min = 3600 s
+* 1 hari = 24 h = 1440 min = 86400 s
+* 1 minggu = 7 hari
+* 1 bulan ≈ 30 hari
+* 1 tahun = 365 hari (umum) / 366 hari (kabisat)
+
+## 4. Konversi Satuan Luas
+
+Satuan SI: **Meter persegi (m²)**
+
+* 1 km² = 10^6 m²
+* 1 hektar (ha) = 100 are = 10^4 m²
+* 1 are = 100 m²
+* 1 cm² = 10^-4 m²
+* 1 in² = 6.4516 × 10^-4 m²
+* 1 ft² = 9.2903 × 10^-2 m²
+* 1 mi² = 2.5888 × 10^6 m²
+
+## 5. Konversi Satuan Volume
+
+Satuan SI: **Meter kubik (m³)**
+
+* 1 liter (L) = 1 dm³ = 10^-3 m³ = 1000 mL
+* 1 mL = 1 cm³ (cc)
+* 1 ft³ = 0.0283168 m³
+* 1 in³ = 1.6387 × 10^-5 m³
+* 1 galon AS (liquid) = 3.7854 L
+* 1 galon imperial = 4.5461 L
+* 1 barrel minyak = 158.987 L
+
+## 6. Konversi Satuan Kecepatan
+
+Satuan SI: **Meter per detik (m/s)**
+
+* 1 km/h = 1000 m / 3600 s ≈ 0.2778 m/s
+* 1 mph = 0.44704 m/s
+* 1 knot (kt) = 1.852 km/h = 0.51444 m/s
+* 1 ft/s = 0.3048 m/s
+
+## 7. Konversi Satuan Gaya
+
+Satuan SI: **Newton (N)**
+
+* 1 dyne = 10^-5 N
+* 1 pound‑force (lbf) = 4.44822 N
+* 1 kilogram‑force (kgf) ≈ 9.80665 N
+
+## 8. Konversi Satuan Tekanan
+
+Satuan SI: **Pascal (Pa)**
+
+* 1 bar = 10^5 Pa
+* 1 atm = 101325 Pa = 1.01325 bar = 760 mmHg = 760 torr
+* 1 psi = 6894.76 Pa
+* 1 mmHg = 133.322 Pa
+* 1 torr = 133.322 Pa
+
+## 9. Konversi Satuan Energi / Usaha / Kalor
+
+Satuan SI: **Joule (J)**
+
+* 1 erg = 10^-7 J
+* 1 kalori (cal) = 4.1868 J
+* 1 kalori termokimia = 4.184 J
+* 1 British Thermal Unit (BTU) = 1055 J
+* 1 kWh = 3.6 × 10^6 J
+* 1 elektronvolt (eV) = 1.602 × 10^-19 J
+* 1 ft‑lb = 1.35582 J
+
+## 10. Konversi Satuan Daya
+
+Satuan SI: **Watt (W)**
+
+* 1 horse power (hp, metrik) = 745.7 W
+* 1 horse power (hp, elektrik) = 746 W
+* 1 cal/s = 4.1868 W
+* 1 BTU/h = 0.293071 W
+
+## 11. Konversi Satuan Suhu
+
+Satuan SI: **Kelvin (K)**
+
+* °C → K :  K = °C + 273.15
+* K → °C :  °C = K − 273.15
+* °C → °F :  °F = (°C × 1.8) + 32
+* °F → °C :  °C = (°F − 32) / 1.8
+* °F → °R :  °R = °F + 459.67
+
+## 12. Konversi Satuan Muatan Listrik
+
+Satuan SI: **Coulomb (C)**
+
+* 1 statcoulomb (esu) = 3.3356 × 10^-10 C
+* 1 faraday = 96485 C
+
+## 13. Konversi Satuan Arus Listrik
+
+Satuan SI: **Ampere (A)**
+
+* (Turunan: miliampere, mikroampere, dll.)
+
+## 14. Konversi Satuan Potensial Listrik
+
+Satuan SI: **Volt (V)**
+
+* 1 statvolt = 299.792458 V
+* 1 abvolt = 10^-8 V
+
+## 15. Konversi Satuan Hambatan Listrik
+
+Satuan SI: **Ohm (Ω)**
+
+* 1 abohm = 10^-9 Ω
+* 1 statohm = 8.98755 × 10^11 Ω
+
+---
+
+**Catatan Penting:**
+
+* Sistem Internasional (SI) adalah sistem satuan yang paling umum dipakai dalam sains dan teknologi.
+* Gunakan faktor konversi dengan hati‑hati dan perhatikan awalan SI (kilo‑, mili‑, mikro‑, dsb.).
