@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 import random
 
-st.set_page_config(page_title="KalkuFisik", layout="wide")
+st.set_page_config(page_title="KalkuFisik", layout="centered")
 
 st.markdown("""
     <style>
