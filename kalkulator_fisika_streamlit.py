@@ -108,127 +108,53 @@ elif menu == "🧮 Kalkulator":
 # -----------------------------------
 # KUIS
 # -----------------------------------
-elif menu == "🧠 Kuis":
-    st.title("🧠 Kuis Fisika Interaktif")
+elif menu == "❓ Kuis":
+    st.title("❓ Kuis Fisika Tambahan: Gerak dan Gaya")
+    st.markdown("💡 **Petunjuk**: Gunakan Kalkulator Fisika untuk membantu menyelesaikan soal berikut.")
 
     questions = [
         {
-            "q": "Sebuah benda bermassa 10 kg diletakkan di atas lantai datar. Berapakah gaya normalnya?",
-            "options": ["0 N", "10 N", "98 N", "100 N"],
+            "q": "Soal 1: Kapal laut berlayar dengan kecepatan 15 m/s menempuh jarak 900 meter. Waktu yang dibutuhkan?",
+            "options": ["A. 45 detik", "B. 50 detik", "C. 60 detik", "D. 75 detik"],
             "ans": 2,
-            "penjelasan": "Gaya normal = berat = m × g = 10 × 9.8 = 98 N"
+            "explanation": "Waktu = Jarak / Kecepatan = 900 / 15 = 60 detik."
         },
         {
-            "q": "Sebuah benda 10 kg di bidang miring 53°. Gaya normalnya?",
-            "options": ["0 N", "98 N", "59 N", "49 N"],
-            "ans": 2,
-            "penjelasan": "N = mg cos(53°) = 10 × 9.8 × 0.6 ≈ 59 N"
-        },
-        {
-            "q": "Benda 10 kg ditarik gaya 100 N pada sudut 37°. Gaya normalnya?",
-            "options": ["98 N", "80 N", "40 N", "50 N"],
-            "ans": 1,
-            "penjelasan": "N = mg - F sin(θ) = 98 - 100×0.6 = 38 N (mendekati 40 N)"
-        },
-        {
-            "q": "Benda 10 kg ditarik gaya 100 N sudut 37°, percepatan tanpa gesekan?",
-            "options": ["10 m/s²", "8 m/s²", "6 m/s²", "4 m/s²"],
-            "ans": 1,
-            "penjelasan": "a = F cos(37°)/m = 100×0.8 / 10 = 8 m/s²"
-        },
-        {
-            "q": "Benda melambat dari 10 m/s selama 20 s hingga berhenti. Perlambatan?",
-            "options": ["0.5 m/s²", "1 m/s²", "2 m/s²", "0.25 m/s²"],
-            "ans": 0,
-            "penjelasan": "a = Δv/t = (0 - 10)/20 = -0.5 m/s²"
-        },
-        {
-            "q": "Jarak yang ditempuh benda di soal sebelumnya?",
-            "options": ["100 m", "200 m", "150 m", "250 m"],
-            "ans": 0,
-            "penjelasan": "s = vt - ½at² = 10×20 - 0.5×0.5×400 = 200 - 100 = 100 m"
-        },
-        {
-            "q": "Benda dijatuhkan dari 20 meter. Waktu jatuhnya?",
-            "options": ["1 s", "2 s", "3 s", "4 s"],
-            "ans": 1,
-            "penjelasan": "t = √(2h/g) = √(40/10) = √4 = 2 s"
-        },
-        {
-            "q": "Kecepatan saat menyentuh tanah (20 m)?",
-            "options": ["10 m/s", "20 m/s", "15 m/s", "5 m/s"],
-            "ans": 1,
-            "penjelasan": "v = √(2gh) = √(2×10×20) = √400 = 20 m/s"
-        },
-        {
-            "q": "Lempar vertikal ke atas 20 m/s. Waktu ke titik tertinggi?",
-            "options": ["1 s", "2 s", "3 s", "4 s"],
-            "ans": 1,
-            "penjelasan": "t = v/g = 20/10 = 2 s"
-        },
-        {
-            "q": "Tinggi maksimum lemparan vertikal 20 m/s?",
-            "options": ["10 m", "20 m", "30 m", "40 m"],
+            "q": "Soal 2: Sepeda mulai dari 5 m/s dengan percepatan 2 m/s² selama 8 detik. Kecepatan akhirnya?",
+            "options": ["A. 16 m/s", "B. 18 m/s", "C. 20 m/s", "D. 21 m/s"],
             "ans": 3,
-            "penjelasan": "h = v² / (2g) = 400 / 20 = 20 m"
+            "explanation": "v = v₀ + a×t = 5 + (2×8) = 21 m/s."
+        },
+        {
+            "q": "Soal 3: Mobil dari 10 m/s jadi 20 m/s dalam 5 detik. Jarak yang ditempuh?",
+            "options": ["A. 75 m", "B. 80 m", "C. 85 m", "D. 90 m"],
+            "ans": 0,
+            "explanation": "s = ½(v₀ + v)t = ½(10+20)×5 = 75 m."
+        },
+        {
+            "q": "Soal 4: Benda 20 kg didorong dengan gaya 100 N. Berapa percepatannya?",
+            "options": ["A. 3 m/s²", "B. 4 m/s²", "C. 5 m/s²", "D. 6 m/s²"],
+            "ans": 2,
+            "explanation": "a = F / m = 100 / 20 = 5 m/s²."
+        },
+        {
+            "q": "Soal 5: Bola 0,5 kg ditendang dengan percepatan 40 m/s². Gaya tendangan?",
+            "options": ["A. 10 N", "B. 15 N", "C. 20 N", "D. 25 N"],
+            "ans": 2,
+            "explanation": "F = m × a = 0.5 × 40 = 20 N."
         },
     ]
 
-    if 'quiz_index' not in st.session_state:
-        st.session_state.quiz_index = 0
-        st.session_state.score = 0
-        st.session_state.answers = []
-        st.session_state.show_explanation = False
-
-    idx = st.session_state.quiz_index
-    q = questions[idx]
-
-    st.markdown(f"### Soal {idx + 1} dari {len(questions)}")
-    selected = st.radio(q["q"], q["options"], key=idx)
-
-    if not st.session_state.show_explanation:
-        if st.button("✅ Jawab"):
-            benar = (selected == q["options"][q["ans"]])
-            st.session_state.answers.append({
-                "soal": q["q"],
-                "jawaban": selected,
-                "benar": benar,
-                "penjelasan": q["penjelasan"],
-                "kunci": q["options"][q["ans"]]
-            })
-
-            if benar:
-                st.success("✅ Jawaban Benar!")
-                st.session_state.score += 1
+    for idx, q in enumerate(questions):
+        st.markdown(f"### {q['q']}")
+        choice = st.radio("Pilih jawaban Anda:", q["options"], key=f"quiz{idx}")
+        if st.button(f"Jawab Soal {idx+1}"):
+            if choice == q["options"][q["ans"]]:
+                st.success("✅ Jawaban Anda benar!")
             else:
-                st.error(f"❌ Salah. Jawaban benar: {q['options'][q['ans']]}")
-            st.info(f"📘 Penjelasan: {q['penjelasan']}")
-            st.session_state.show_explanation = True
-            st.experimental_rerun()
-
-    if st.session_state.show_explanation:
-        if idx + 1 < len(questions):
-            if st.button("➡️ Lanjut ke Soal Berikutnya"):
-                st.session_state.quiz_index += 1
-                st.session_state.show_explanation = False
-                st.experimental_rerun()
-        else:
-            st.markdown("---")
-            st.success(f"🎉 Kuis selesai! Nilai kamu: {st.session_state.score} / {len(questions)}")
-            st.markdown("### 📖 Ringkasan Jawaban dan Pembahasan:")
-            for i, a in enumerate(st.session_state.answers):
-                st.markdown(f"**Soal {i+1}**")
-                st.write(a["soal"])
-                st.write(f"✅ Jawaban kamu: {a['jawaban']}")
-                if not a["benar"]:
-                    st.write(f"📌 Jawaban benar: {a['kunci']}")
-                st.write(f"📘 Penjelasan: {a['penjelasan']}")
-                st.markdown("---")
-
-            if st.button("🔁 Coba Lagi"):
-                for key in ["quiz_index", "score", "answers", "show_explanation"]:
-                    del st.session_state[key]
-                st.experimental_rerun()
+                st.error(f"❌ Jawaban Anda salah. Jawaban benar: {q['options'][q['ans']]}")
+            with st.expander("📘 Penjelasan"):
+                st.markdown(q["explanation"])
 # -----------------------------------
 # TENTANG
 # -----------------------------------
