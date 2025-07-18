@@ -13,7 +13,7 @@ menu = st.sidebar.radio("🔍 **Navigasi**", ("🏠 Beranda", "🧮 Kalkulator",
 if menu == "🏠 Beranda":
     st.title("Kalkulator Fisika 📊")
     st.markdown("""
-    Selamat datang di aplikasi **Kalkulator Fisika **! 
+    Selamat datang di aplikasi Kalkulator Fisika! 
 
     Aplikasi ini dirancang khusus untuk membantu siswa ataupun mahasiswa memahami konsep dasar fisika melalui kalkulasi, konversi satuan, dan kuis interaktif. Gunakan menu di samping untuk menavigasi fitur.
     """)
