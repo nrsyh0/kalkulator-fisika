@@ -29,76 +29,53 @@ elif menu == "🧮 Kalkulator":
     st.title("🧮 Kalkulator Fisika")
     tab1, tab2, tab3 = st.tabs(["Kinematika", "Dinamika", "Konversi Satuan"])
 
-    elif menu == "🧮 Kalkulator":
-    st.title("🧮 Kalkulator Fisika")
-    tab1, tab2, tab3 = st.tabs(["Kinematika", "Dinamika", "Konversi Satuan"])
-
-    # KINEMATIKA
     with tab1:
-        st.header("📐 Kalkulator Kinematika")
-        kin_mode = st.selectbox("Pilih yang ingin dihitung:", ["Jarak (s)", "Kecepatan (v)", "Waktu (t)", "Percepatan (a)"])
-        if kin_mode == "Jarak (s)":
-            v = st.number_input("Kecepatan (m/s)", step=0.1)
-            t = st.number_input("Waktu (s)", step=0.1)
+        st.subheader("🔹 Hitung Jarak, Kecepatan, atau Waktu")
+        pilihan = st.radio("Pilih yang ingin dihitung:", ("Jarak", "Kecepatan", "Waktu"))
+        if pilihan == "Jarak":
+            v = st.number_input("Kecepatan (m/s):", step=0.1)
+            t = st.number_input("Waktu (s):", step=0.1)
             if st.button("Hitung Jarak"):
-                st.success(f"Jarak = {v * t:.2f} meter")
-        elif kin_mode == "Kecepatan (v)":
-            s = st.number_input("Jarak (m)", step=0.1)
-            t = st.number_input("Waktu (s)", step=0.1)
-            if t != 0 and st.button("Hitung Kecepatan"):
-                st.success(f"Kecepatan = {s / t:.2f} m/s")
-        elif kin_mode == "Waktu (t)":
-            s = st.number_input("Jarak (m)", step=0.1)
-            v = st.number_input("Kecepatan (m/s)", step=0.1)
-            if v != 0 and st.button("Hitung Waktu"):
-                st.success(f"Waktu = {s / v:.2f} detik")
-        elif kin_mode == "Percepatan (a)":
-            v1 = st.number_input("Kecepatan awal v1 (m/s)", step=0.1)
-            v2 = st.number_input("Kecepatan akhir v2 (m/s)", step=0.1)
-            t = st.number_input("Waktu (s)", step=0.1)
-            if t != 0 and st.button("Hitung Percepatan"):
-                st.success(f"Percepatan = {(v2 - v1) / t:.2f} m/s²")
+                s = v * t
+                st.success(f"Jarak = {s} meter")
+        elif pilihan == "Kecepatan":
+            s = st.number_input("Jarak (m):", step=0.1)
+            t = st.number_input("Waktu (s):", step=0.1)
+            if st.button("Hitung Kecepatan"):
+                if t != 0:
+                    v = s / t
+                    st.success(f"Kecepatan = {v} m/s")
+                else:
+                    st.error("Waktu tidak boleh nol")
+        elif pilihan == "Waktu":
+            s = st.number_input("Jarak (m):", step=0.1)
+            v = st.number_input("Kecepatan (m/s):", step=0.1)
+            if st.button("Hitung Waktu"):
+                if v != 0:
+                    t = s / v
+                    st.success(f"Waktu = {t} detik")
+                else:
+                    st.error("Kecepatan tidak boleh nol")
 
-    # DINAMIKA
     with tab2:
-        st.header("⚙️ Kalkulator Dinamika")
-        dyn_mode = st.selectbox("Pilih yang ingin dihitung:", ["Gaya (F)", "Tekanan (P)", "Energi Kinetik (Ek)"])
-        if dyn_mode == "Gaya (F)":
-            m = st.number_input("Massa (kg)", step=0.1)
-            a = st.number_input("Percepatan (m/s²)", step=0.1)
+        st.subheader("🔹 Hitung Gaya atau Tekanan")
+        pilihan = st.radio("Pilih yang ingin dihitung:", ("Gaya", "Tekanan"))
+        if pilihan == "Gaya":
+            m = st.number_input("Massa (kg):", step=0.1)
+            a = st.number_input("Percepatan (m/s²):", step=0.1)
             if st.button("Hitung Gaya"):
-                st.success(f"Gaya = {m * a:.2f} Newton")
-        elif dyn_mode == "Tekanan (P)":
-            F = st.number_input("Gaya (N)", step=0.1)
-            A = st.number_input("Luas (m²)", step=0.01)
-            if A != 0 and st.button("Hitung Tekanan"):
-                st.success(f"Tekanan = {F / A:.2f} Pascal")
-        elif dyn_mode == "Energi Kinetik (Ek)":
-            m = st.number_input("Massa (kg)", step=0.1)
-            v = st.number_input("Kecepatan (m/s)", step=0.1)
-            if st.button("Hitung Energi Kinetik"):
-                st.success(f"Energi Kinetik = {0.5 * m * v**2:.2f} Joule")
+                f = m * a
+                st.success(f"Gaya = {f} Newton")
+        elif pilihan == "Tekanan":
+            f = st.number_input("Gaya (N):", step=0.1)
+            A = st.number_input("Luas bidang (m²):", step=0.1)
+            if st.button("Hitung Tekanan"):
+                if A != 0:
+                    p = f / A
+                    st.success(f"Tekanan = {p} Pascal")
+                else:
+                    st.error("Luas bidang tidak boleh nol")
 
-
-    # KONVERSI SATUAN
-    with tab3:
-        st.header("📏 Konversi Satuan Fisika")
-        jenis = st.selectbox("Jenis Konversi", ["Energi", "Tekanan", "Panjang", "Waktu"])
-
-        satuan_dict = {
-            "Energi": {"joule": 1, "kjoule": 1e3, "kalori": 4.184, "kwh": 3.6e6, "BTU": 1055},
-            "Tekanan": {"pa": 1, "kpa": 1e3, "atm": 101325, "bar": 1e5, "mmhg": 133.322},
-            "Panjang": {"meter": 1, "km": 1e3, "cm": 1e-2, "mm": 1e-3, "inch": 0.0254, "ft": 0.3048},
-            "Waktu": {"detik": 1, "menit": 60, "jam": 3600, "hari": 86400},
-        }
-
-        val = st.number_input(f"Nilai {jenis}", step=0.1)
-        from_unit = st.selectbox("Dari", satuan_dict[jenis].keys(), key="from_"+jenis)
-        to_unit = st.selectbox("Ke", satuan_dict[jenis].keys(), key="to_"+jenis)
-
-        if st.button("Konversi"):
-            hasil = val * satuan_dict[jenis][from_unit] / satuan_dict[jenis][to_unit]
-            st.success(f"Hasil: {hasil:.4f} {to_unit}")
     with tab3:
         st.header("📏 Konversi Satuan Fisika")
         jenis = st.selectbox("Jenis Konversi", ["Energi", "Tekanan", "Panjang", "Waktu", "Volume", "Berat"])
