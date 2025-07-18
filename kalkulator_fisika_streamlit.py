@@ -250,7 +250,6 @@ else:
             st.success("✅ Pesan berhasil dikirim!")
 
 # 👨‍👩‍👧‍👦 TENTANG KAMI
-# -------------------------------
 if menu == "👨‍👩‍👧‍👦 Tentang Kami":
     st.title("👨‍👩‍👧‍👦 Tentang Kami")
 
@@ -264,15 +263,19 @@ if menu == "👨‍👩‍👧‍👦 Tentang Kami":
     #### 👥 Anggota Kelompok:
     """)
 
-    st.markdown("""
-    | Nama Lengkap                           | NIM       |
-    |----------------------------------------|-----------|
-    | 🧑‍🔬 Asyafarel Meldy Putra             | 2460334   |
-    | 🎶 Gleen Fredly Manurung               | 2460379   |
-    | 🌸 Nur Aisyah                          | 2460474   |
-    | ✨ Vidya Fitriani Dwi Saputri          | 2460531   |
-    | 💡 Muhammad Revan Fallaq               | 2460428   |
-    """)
+    import pandas as pd
+    data = {
+        "Nama Lengkap": [
+            "🧑‍🔬 Asyafarel Meldy Putra",
+            "🎶 Gleen Fredly Manurung",
+            "🌸 Nur Aisyah",
+            "✨ Vidya Fitriani Dwi Saputri",
+            "💡 Muhammad Revan Fallaq"
+        ],
+        "NIM": ["2460334", "2460379", "2460474", "2460531", "2460428"]
+    }
+    df = pd.DataFrame(data)
+    st.table(df)
 
     st.markdown("""
     ---
