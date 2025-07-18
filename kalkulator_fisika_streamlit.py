@@ -203,5 +203,6 @@ elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
 
     st.markdown("""
     ---
-    Kami berharap aplikasi ini membantu dalam memahami konsep dasar fisika melalui pendekatan interaktif yang seru dan mudah dipahami 😊
+    Kami berharap aplikasi ini membantu dalam memahami konsep dasar fisika melalui pendekatan interaktif yang seru dan mudah dipahami 😊,color="green"
+
     """)
