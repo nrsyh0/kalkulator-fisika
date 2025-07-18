@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 import random
 
-st.set_page_config(page_title="Kalkulator & Kuis Fisika", layout="wide")
+st.set_page_config(page_title="KalkuFisik", layout="wide")
 
 st.markdown("""
     <style>
@@ -17,12 +17,12 @@ menu = st.sidebar.radio("🔍 **Navigasi**", ("🏠 Beranda", "🧮 Kalkulator",
 
 if menu == "🏠 Beranda":
     st.title("🏠 Selamat Datang di Aplikasi Kalkulator & Kuis Fisika")
-    st.image("fisika.jpg", use_container_width=True)
+    st.image("fisika.jpg", use_container_width="centered")
     st.markdown("""
     ## 👋 Halo!
     Selamat datang di aplikasi interaktif untuk belajar Fisika dengan cara yang seru dan menyenangkan.
     
-    Pilih menu di sebelah kiri untuk mulai menggunakan kalkulator, mencoba kuis, atau membaca materi.
+    Aplikasi ini dirancang khusus untuk membantu siswa ataupun mahasiswa memahami konsep dasar fisika melalui kalkulasi, konversi satuan, dan kuis interaktif. Pilih menu di sebelah kiri untuk mulai menggunakan kalkulator dan mencoba kuis.
     """)
 
 elif menu == "🧮 Kalkulator":
