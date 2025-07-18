@@ -206,7 +206,7 @@ elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
     ### 📚 Kelompok 9 - Kelas 1D Analis Kimia
 
     Kami adalah mahasiswa dari **Politeknik AKA Bogor**, Program Studi **Analis Kimia**, kelas **1D**.  
-    Aplikasi ini adalah hasil kolaborasi dalam proyek pembelajaran interaktif untuk mata kuliah Bahasa Inggris dan Fisika.
+    Aplikasi ini adalah hasil kolaborasi dalam proyek pembelajaran interaktif untuk mata kuliah Bahasa Inggrisg\-9 dan Fisika.
 
     ---
     #### 👥 Anggota Kelompok:
