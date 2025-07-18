@@ -68,8 +68,7 @@ elif menu == "🧮 Kalkulator":
                     st.success(f"Percepatan = {a} m/s²")
                 else:
                     st.error("Waktu tidak boleh 0")
- # DINAMIKA
-    with tab2:
+with tab2:
         st.header("⚙️ Kalkulator Dinamika")
         dyn_mode = st.selectbox("Pilih yang ingin dihitung:", ["Gaya (F)", "Tekanan (P)", "Energi Kinetik (Ek)"])
         if dyn_mode == "Gaya (F)":
