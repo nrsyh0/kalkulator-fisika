@@ -108,95 +108,52 @@ elif menu == "🧮 Kalkulator":
 # -----------------------------------
 # KUIS
 # -----------------------------------
-elif menu == "❓ Kuis":
-    st.title("❓ Kuis Fisika Tambahan: Gerak dan Gaya")
-    st.write("Gunakan Kalkulator Fisika untuk membantu menjawab!")
+if 'show_explanation' not in st.session_state:
+    st.session_state.show_explanation = False
 
-    # Soal dan jawaban
-    questions = [
-        {
-            "q": "Soal 1: Sebuah kapal laut berlayar dengan kecepatan konstan 15 m/s. Jika kapal tersebut menempuh jarak 900 meter, berapakah waktu yang dibutuhkan kapal tersebut (dalam detik)?",
-            "options": ["A. 45 detik", "B. 50 detik", "C. 60 detik", "D. 75 detik"],
-            "ans": 2,
-            "penjelasan": "Waktu = Jarak / Kecepatan = 900 / 15 = 60 detik"
-        },
-        {
-            "q": "Soal 2: Sebuah sepeda mulai bergerak dari kecepatan awal 5 m/s dan mengalami percepatan 2 m/s² selama 8 detik. Berapakah kecepatan akhirnya?",
-            "options": ["A. 16 m/s", "B. 18 m/s", "C. 20 m/s", "D. 21 m/s"],
-            "ans": 3,
-            "penjelasan": "v = vo + a × t = 5 + (2 × 8) = 21 m/s"
-        },
-        {
-            "q": "Soal 3: Sebuah mobil dari 10 m/s menjadi 20 m/s selama 5 detik. Jarak yang ditempuh?",
-            "options": ["A. 75 m", "B. 80 m", "C. 85 m", "D. 90 m"],
-            "ans": 0,
-            "penjelasan": "s = ½ (vo + vt) × t = ½ (10 + 20) × 5 = 75 m"
-        },
-        {
-            "q": "Soal 4: Sebuah benda 20 kg didorong dengan gaya 100 N. Percepatannya?",
-            "options": ["A. 3 m/s²", "B. 4 m/s²", "C. 5 m/s²", "D. 6 m/s²"],
-            "ans": 2,
-            "penjelasan": "a = F / m = 100 / 20 = 5 m/s²"
-        },
-        {
-            "q": "Soal 5: Bola 0.5 kg ditendang dan mengalami percepatan 40 m/s². Gaya tendangan?",
-            "options": ["A. 10 N", "B. 15 N", "C. 20 N", "D. 25 N"],
-            "ans": 2,
-            "penjelasan": "F = m × a = 0.5 × 40 = 20 N"
-        }
-    ]
+if st.button("Jawab") and not st.session_state.show_explanation:
+    st.session_state.show_explanation = True
+    benar = (selected == q["options"][q["ans"]])
+    st.session_state.answers.append({
+        "soal": q["q"],
+        "jawaban": selected,
+        "benar": benar,
+        "penjelasan": q["penjelasan"],
+        "kunci": q["options"][q["ans"]]
+    })
 
-    if 'quiz_index' not in st.session_state:
-        st.session_state.quiz_index = 0
-        st.session_state.score = 0
-        st.session_state.answers = []
+    if benar:
+        st.success("✅ Jawaban Benar!")
+        st.session_state.score += 1
+    else:
+        st.error(f"❌ Salah. Jawaban benar: {q['options'][q['ans']]}")
 
-    q = questions[st.session_state.quiz_index]
-    st.markdown(f"### {q['q']}")
-    selected = st.radio("Pilih jawaban Anda:", q["options"], key=f"quiz_q{st.session_state.quiz_index}")
+    st.info(f"📘 Penjelasan: {q['penjelasan']}")
 
-    if st.button("Jawab"):
-        benar = (selected == q["options"][q["ans"]])
-        st.session_state.answers.append({
-            "soal": q["q"],
-            "jawaban": selected,
-            "benar": benar,
-            "penjelasan": q["penjelasan"],
-            "kunci": q["options"][q["ans"]]
-        })
-
-        if benar:
-            st.success("✅ Jawaban Benar!")
-            st.session_state.score += 1
-        else:
-            st.error(f"❌ Salah. Jawaban benar: {q['options'][q['ans']]}")
-
-        st.info(f"📘 Penjelasan: {q['penjelasan']}")
-
-        # Tombol untuk lanjut
-        if st.session_state.quiz_index + 1 < len(questions):
-            if st.button("➡️ Lanjut ke Soal Berikutnya"):
-                st.session_state.quiz_index += 1
-                st.experimental_rerun()
-        else:
+if st.session_state.show_explanation:
+    if st.session_state.quiz_index + 1 < len(questions):
+        if st.button("➡️ Lanjut ke Soal Berikutnya"):
+            st.session_state.quiz_index += 1
+            st.session_state.show_explanation = False
+            st.experimental_rerun()
+    else:
+        st.markdown("---")
+        st.success(f"🎉 Kuis selesai! Nilai kamu: {st.session_state.score} / {len(questions)}")
+        st.markdown("### 📖 Ringkasan Jawaban dan Pembahasan:")
+        for i, a in enumerate(st.session_state.answers):
+            st.markdown(f"**Soal {i+1}**")
+            st.write(a["soal"])
+            st.write(f"✅ Jawaban kamu: {a['jawaban']}")
+            if not a["benar"]:
+                st.write(f"📌 Jawaban benar: {a['kunci']}")
+            st.write(f"📘 Penjelasan: {a['penjelasan']}")
             st.markdown("---")
-            st.success(f"🎉 Kuis selesai! Nilai kamu: {st.session_state.score} / {len(questions)}")
-            st.markdown("### 📖 Ringkasan Jawaban dan Pembahasan:")
-            for i, a in enumerate(st.session_state.answers):
-                st.markdown(f"**Soal {i+1}**")
-                st.write(a["soal"])
-                st.write(f"✅ Jawaban kamu: {a['jawaban']}")
-                if not a["benar"]:
-                    st.write(f"📌 Jawaban benar: {a['kunci']}")
-                st.write(f"📘 Penjelasan: {a['penjelasan']}")
-                st.markdown("---")
 
-            # Reset untuk coba lagi
-            if st.button("🔁 Coba Lagi"):
-                del st.session_state.quiz_index
-                del st.session_state.score
-                del st.session_state.answers
-                st.experimental_rerun()
+        # Tombol ulang
+        if st.button("🔁 Coba Lagi"):
+            for key in ["quiz_index", "score", "answers", "show_explanation"]:
+                del st.session_state[key]
+            st.experimental_rerun()
 
 # -----------------------------------
 # TENTANG
