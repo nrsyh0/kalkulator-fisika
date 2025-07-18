@@ -1,30 +1,40 @@
+# kalkulator_fisika_streamlit.py
 import streamlit as st
 from PIL import Image
-import random
+import math
 
-st.set_page_config(page_title="KalkuFisik", layout="wide")
+st.set_page_config(page_title="Kalkulator Fisika", layout="centered")
 
-st.markdown("""
-    <style>
-    .main {
-        background-color: #FDF6EC;
-    }
-    </style>
-""", unsafe_allow_html=True)
+menu = st.sidebar.radio("🔍 **Navigasi**", ("🏠 Beranda", "🧮 Kalkulator", "❓ Kuis", "ℹ️ Tentang Aplikasi"))
 
-# Sidebar Navigation
-menu = st.sidebar.radio("🔍 **Navigasi**", ("🏠 Beranda", "🧮 Kalkulator", "❓ Kuis", "ℹ️ Tentang Aplikasi", "👨‍👩‍👧‍👦 Tentang Kami"))
-
+# -----------------------------------
+# BERANDA
+# -----------------------------------
 if menu == "🏠 Beranda":
-    st.title("🏠 Selamat Datang di Aplikasi Kalkulator & Kuis Fisika")
-    st.image("fisika.jpg", use_container_width="centered")
+    st.title("Kalkulator Fisika 📊")
     st.markdown("""
-    ## 👋 Halo!
-    Selamat datang di aplikasi interaktif untuk belajar Fisika dengan cara yang seru dan menyenangkan.
-    
-    Aplikasi ini dirancang khusus untuk membantu siswa ataupun mahasiswa memahami konsep dasar fisika melalui kalkulasi, konversi satuan, dan kuis interaktif. Pilih menu di sebelah kiri untuk mulai menggunakan kalkulator dan mencoba kuis.
+    Selamat datang di aplikasi Kalkulator Fisika! 
+
+    Aplikasi ini dirancang khusus untuk membantu siswa ataupun mahasiswa memahami konsep dasar fisika melalui kalkulasi, konversi satuan, dan kuis interaktif. Gunakan menu di samping untuk menavigasi fitur.
+    """)
+    try:
+        image = Image.open("fisika.jpg")  # Pastikan file ini ada di folder yang sama
+        st.image(image, caption="Ilustrasi Fisika", width=350)  # Gunakan width agar proporsional
+    except:
+        st.warning("Gambar tidak ditemukan atau gagal dimuat.")
+ 
+    st.markdown("""
+    ### 🔧 Fitur Utama:
+    - 📐 Kalkulator Kinematika & Dinamika
+    - 🔁 Konversi Satuan
+    - 🧠 Kuis Fisika Pilihan Ganda
+    - 📘 Penjelasan Materi
+    - 📩 Hubungi Kami
     """)
 
+# -----------------------------------
+# KALKULATOR
+# -----------------------------------
 elif menu == "🧮 Kalkulator":
     st.title("🧮 Kalkulator Fisika")
     tab1, tab2, tab3 = st.tabs(["Kinematika", "Dinamika", "Konversi Satuan"])
@@ -94,27 +104,8 @@ elif menu == "🧮 Kalkulator":
         if st.button("Konversi"):
             hasil = val * satuan_dict[jenis][from_unit] / satuan_dict[jenis][to_unit]
             st.success(f"Hasil: {hasil:.4f} {to_unit}")
-    with tab3:
-        st.header("📏 Konversi Satuan Fisika")
-        jenis = st.selectbox("Jenis Konversi", ["Energi", "Tekanan", "Panjang", "Waktu", "Volume", "Berat"])
 
-        satuan_dict = {
-            "Energi": {"joule": 1, "kjoule": 1e3, "kalori": 4.184, "kwh": 3.6e6, "BTU": 1055},
-            "Tekanan": {"pa": 1, "kpa": 1e3, "atm": 101325, "bar": 1e5, "mmhg": 133.322},
-            "Panjang": {"meter": 1, "km": 1e3, "cm": 1e-2, "mm": 1e-3, "inch": 0.0254, "ft": 0.3048},
-            "Waktu": {"detik": 1, "menit": 60, "jam": 3600, "hari": 86400},
-            "Volume": {"liter": 1, "ml": 1e-3, "m³": 1000},
-            "Berat": {"gram": 1, "kg": 1000, "mg": 0.001},
-        }
-
-        val = st.number_input(f"Nilai {jenis}", step=0.1)
-        from_unit = st.selectbox("Dari", satuan_dict[jenis].keys(), key="from_"+jenis)
-        to_unit = st.selectbox("Ke", satuan_dict[jenis].keys(), key="to_"+jenis)
-
-        if st.button("Konversi"):
-            hasil = val * satuan_dict[jenis][from_unit] / satuan_dict[jenis][to_unit]
-            st.success(f"Hasil: {hasil:.4f} {to_unit}")
-
+# -----------------------------------
 # KUIS
 # -----------------------------------
 elif menu == "❓ Kuis":
@@ -164,62 +155,53 @@ elif menu == "❓ Kuis":
                 st.error(f"❌ Jawaban Anda salah. Jawaban benar: {q['options'][q['ans']]}")
             with st.expander("📘 Penjelasan"):
                 st.markdown(q["explanation"])
-
-elif menu == "ℹ️ Tentang Aplikasi":
+# -----------------------------------
+# TENTANG
+# -----------------------------------
+else:
     st.title("ℹ️ Tentang Aplikasi")
     st.markdown("""
-    ## 🎯 Tujuan Aplikasi
-    Aplikasi ini dirancang untuk membantu pelajar memahami konsep dasar Fisika melalui:
-    - 💡 Kalkulator interaktif
-    - 📝 Kuis pilihan ganda
-    - 🔁 Konversi satuan fisika
-
-    ## 📘 Materi Kalkulator
-    **Kinematika:**
-    - Menghitung jarak, kecepatan, waktu, dan percepatan.
-
-    **Dinamika:**
-    - Menghitung gaya, tekanan, dan energi kinetik.
-
-    **Konversi:**
-    - Panjang, waktu, energi, tekanan, berat, dan volume.
-
-    ## ❓ Kuis Fisika
-    Berisi soal-soal pilihan ganda tentang:
-    - Gaya normal di bidang datar dan miring
-    - Percepatan benda yang ditarik gaya
-    - Kinematika (gerak vertikal, jatuh bebas)
-
-    ## 🧾 Cara Penggunaan
-    - Gunakan sidebar untuk berpindah antar fitur.
-    - Isi nilai input, tekan tombol "Hitung".
-    - Di kuis, pilih jawaban dan lihat hasilnya langsung.
-    """)
-
-elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
-    st.title("👨‍👩‍👧‍👦 Tentang Kami")
-
-    st.markdown("""
-    ### 📚 Kelompok 9 - Kelas 1D Analis Kimia
-
-    Kami adalah mahasiswa dari **Politeknik AKA Bogor**, Program Studi **Analis Kimia**, kelas **1D**.  
-    Aplikasi ini adalah hasil kolaborasi dalam proyek pembelajaran interaktif untuk mata kuliah Bahasa Inggrisg\-9 dan Fisika.
+    ### 🎓 Tujuan Aplikasi
+    Membantu pelajar memahami dan menghitung konsep fisika secara **interaktif** dan **visual**.
 
     ---
-    #### 👥 Anggota Kelompok:
-    """)
+    ### 🔍 Materi KALKULATOR
 
-    st.markdown("""
-    | Nama Lengkap                           | NIM       |
-    |----------------------------------------|-----------|
-    | 🧑‍🔬 Asyafarel Meldy Putra             | 2460334   |
-    | 🎶 Gleen Fredly Manurung               | 2460379   |
-    | 🌸 Nur Aisyah                          | 2460474   |
-    | ✨ Vidya Fitriani Dwi Saputri          | 2460531   |
-    | 💡 Muhammad Revan Fallaq               | 2460428   |
-    """)
+    #### Kinematika
+    - **Jarak (s)**: s = v × t
+    - **Kecepatan (v)**: v = s / t
+    - **Waktu (t)**: t = s / v
+    - **Percepatan (a)**: a = (v2 - v1) / t
 
-    st.markdown("""
+    #### Dinamika
+    - **Gaya (F)**: F = m × a
+    - **Tekanan (P)**: P = F / A
+    - **Energi Kinetik**: Ek = 0.5 × m × v²
+
+    #### Konversi Satuan
+    - Energi (Joule, Kalori, kWh, dll)
+    - Tekanan (Pa, atm, mmHg, dll)
+    - Panjang (meter, km, inch, dll)
+    - Waktu (detik, menit, jam, hari)
+
     ---
-    Kami berharap aplikasi ini membantu dalam memahami konsep dasar fisika melalui pendekatan interaktif yang seru dan mudah dipahami 😊
+    ### ❓ Tentang Kuis
+    Berisi **soal pilihan ganda** dari materi kinematika, dinamika, dan konversi satuan. Cocok untuk latihan mandiri.
+
+    ---
+    ### 🛠️ Cara Menggunakan
+    1. Pilih menu di **sidebar kiri**.
+    2. Gunakan **Kalkulator** sesuai topik.
+    3. Ikuti **Kuis** untuk menguji pemahamanmu.
+
+    ---
+    ### 📩 Hubungi Kami
+    Silakan tinggalkan pesan Anda pada kolom berikut.
     """)
+
+    with st.form("hubungi"):
+        email = st.text_input("Email Anda")
+        pesan = st.text_area("Pesan Anda")
+        submitted = st.form_submit_button("Kirim")
+        if submitted:
+            st.success("✅ Pesan berhasil dikirim!")
