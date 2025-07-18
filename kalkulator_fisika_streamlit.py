@@ -70,11 +70,11 @@ elif menu == "🧮 Kalkulator":
             if A != 0 and st.button("Hitung Tekanan"):
                 st.success(f"Tekanan = {F / A:.2f} Pascal")
         elif dyn_mode == "Energi Kinetik (Ek)":
-            m = st.number_input("Massa (kg)", step=0.1)
-            v = st.number_input("Kecepatan (m/s)", step=0.1)
-            if st.button("Hitung Energi Kinetik"):
-                st.success(f"Energi Kinetik = {0.5 * m * v**2:.2f} Joule")
-
+            m = st.number_input("Massa (kg)", step=0.1, key="massa_ek")
+            v = st.number_input("Kecepatan (m/s)", step=0.1, key="kecepatan_ek")
+            if st.button("Hitung Energi Kinetik", key="hitung_ek"):
+                energi_kinetik = 0.5 * m * v**2
+                st.success(f"Energi Kinetik = {energi_kinetik:.2f} Joule")
     # KONVERSI SATUAN
     with tab3:
         st.header("📏 Konversi Satuan Fisika")
