@@ -127,8 +127,6 @@ elif menu == "🧮 Kalkulator":
             "ml": 1e-3,
             "m³": 1000,
             "cm³": 1e-3,
-            "galon (AS)": 3.78541,
-            "pint (AS)": 0.473176
         },
         "Berat": {
             "gram": 1,
