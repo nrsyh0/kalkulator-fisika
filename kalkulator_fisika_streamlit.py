@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 import random
 
-st.set_page_config(page_title="KalkuFisik", layout="centered")
+st.set_page_config(page_title="FisiQ-9", layout="centered")
 
 st.markdown("""
     <style>
@@ -16,7 +16,7 @@ st.markdown("""
 menu = st.sidebar.radio("🔍 **Navigasi**", ("🏠 Beranda", "🧮 Kalkulator", "❓ Kuis", "ℹ️ Tentang Aplikasi", "👨‍👩‍👧‍👦 Tentang Kami"))
 
 if menu == "🏠 Beranda":
-    st.title("🏠 Selamat Datang di Aplikasi Kalkulator & Kuis Fisika")
+    st.title("🏠 Selamat Datang di FisiQ-9")
     st.image("fisika.jpg", use_container_width="centered")
     st.markdown("""
     ## 👋 Halo!
