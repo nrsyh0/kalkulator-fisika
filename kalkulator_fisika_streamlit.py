@@ -78,24 +78,6 @@ elif menu == "🧮 Kalkulator":
     # KONVERSI SATUAN
     with tab3:
         st.header("📏 Konversi Satuan Fisika")
-        jenis = st.selectbox("Jenis Konversi", ["Energi", "Tekanan", "Panjang", "Waktu"])
-
-        satuan_dict = {
-            "Energi": {"joule": 1, "kjoule": 1e3, "kalori": 4.184, "kwh": 3.6e6, "BTU": 1055},
-            "Tekanan": {"pa": 1, "kpa": 1e3, "atm": 101325, "bar": 1e5, "mmhg": 133.322},
-            "Panjang": {"meter": 1, "km": 1e3, "cm": 1e-2, "mm": 1e-3, "inch": 0.0254, "ft": 0.3048},
-            "Waktu": {"detik": 1, "menit": 60, "jam": 3600, "hari": 86400},
-        }
-
-        val = st.number_input(f"Nilai {jenis}", step=0.1)
-        from_unit = st.selectbox("Dari", satuan_dict[jenis].keys(), key="from_"+jenis)
-        to_unit = st.selectbox("Ke", satuan_dict[jenis].keys(), key="to_"+jenis)
-
-        if st.button("Konversi"):
-            hasil = val * satuan_dict[jenis][from_unit] / satuan_dict[jenis][to_unit]
-            st.success(f"Hasil: {hasil:.4f} {to_unit}")
-    with tab3:
-        st.header("📏 Konversi Satuan Fisika")
         jenis = st.selectbox("Jenis Konversi", ["Energi", "Tekanan", "Panjang", "Waktu", "Volume", "Berat"])
 
         satuan_dict = {
