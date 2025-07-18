@@ -194,7 +194,7 @@ elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
     st.markdown("""
     | Nama Lengkap                           | NIM       |
     |----------------------------------------|-----------|
-    | 🧑‍🔬 Asyafarel Meldy Putra             | 2460334   |
+    | 🧑‍🔬 Asyafarel Meldy Putra               | 2460334   |
     | 🎶 Gleen Fredly Manurung               | 2460379   |
     | 🌸 Nur Aisyah                          | 2460474   |
     | ✨ Vidya Fitriani Dwi Saputri          | 2460531   |
