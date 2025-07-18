@@ -85,25 +85,68 @@ elif menu == "🧮 Kalkulator":
             if st.button("Hitung Energi Kinetik"):
                 st.success(f"Energi Kinetik = {0.5 * m * v**2:.2f} Joule")
 
-    # KONVERSI SATUAN
-    with tab3:
-        st.header("📏 Konversi Satuan Fisika")
-        jenis = st.selectbox("Jenis Konversi", ["Energi", "Tekanan", "Panjang", "Waktu"])
+    # KONVERSI SATUANwith tab3:
+    st.header("📏 Konversi Satuan Fisika")
+    
+    jenis = st.selectbox(
+        "Pilih Jenis Konversi",
+        ["Energi", "Tekanan", "Panjang", "Waktu", "Volume", "Berat"]
+    )
 
-        satuan_dict = {
-            "Energi": {"joule": 1, "kjoule": 1e3, "kalori": 4.184, "kwh": 3.6e6, "BTU": 1055},
-            "Tekanan": {"pa": 1, "kpa": 1e3, "atm": 101325, "bar": 1e5, "mmhg": 133.322},
-            "Panjang": {"meter": 1, "km": 1e3, "cm": 1e-2, "mm": 1e-3, "inch": 0.0254, "ft": 0.3048},
-            "Waktu": {"detik": 1, "menit": 60, "jam": 3600, "hari": 86400},
+    satuan_dict = {
+        "Energi": {
+            "joule": 1,
+            "kjoule": 1e3,
+            "kalori": 4.184,
+            "kwh": 3.6e6,
+            "BTU": 1055
+        },
+        "Tekanan": {
+            "pa": 1,
+            "kpa": 1e3,
+            "atm": 101325,
+            "bar": 1e5,
+            "mmhg": 133.322
+        },
+        "Panjang": {
+            "meter": 1,
+            "km": 1e3,
+            "cm": 1e-2,
+            "mm": 1e-3,
+            "inch": 0.0254,
+            "ft": 0.3048
+        },
+        "Waktu": {
+            "detik": 1,
+            "menit": 60,
+            "jam": 3600,
+            "hari": 86400
+        },
+        "Volume": {
+            "liter": 1,
+            "ml": 1e-3,
+            "m³": 1000,
+            "cm³": 1e-3,
+        },
+        "Berat": {
+            "gram": 1,
+            "kg": 1e3,
+            "mg": 1e-3,
+            "ton": 1e6,
+            "ons": 100,
+            "pon": 453.592,
+            "lb": 453.592
         }
+    }
 
-        val = st.number_input(f"Nilai {jenis}", step=0.1)
-        from_unit = st.selectbox("Dari", satuan_dict[jenis].keys(), key="from_"+jenis)
-        to_unit = st.selectbox("Ke", satuan_dict[jenis].keys(), key="to_"+jenis)
+    val = st.number_input(f"Masukkan nilai ({jenis})", step=0.1)
+    from_unit = st.selectbox("Dari", list(satuan_dict[jenis].keys()), key="from_"+jenis)
+    to_unit = st.selectbox("Ke", list(satuan_dict[jenis].keys()), key="to_"+jenis)
 
-        if st.button("Konversi"):
-            hasil = val * satuan_dict[jenis][from_unit] / satuan_dict[jenis][to_unit]
-            st.success(f"Hasil: {hasil:.4f} {to_unit}")
+    if st.button("Konversi", key="btn_convert_"+jenis):
+        hasil = val * satuan_dict[jenis][from_unit] / satuan_dict[jenis][to_unit]
+        st.success(f"Hasil: {hasil:.4f} {to_unit}")
+
 
 # -----------------------------------
 # KUIS
@@ -205,3 +248,36 @@ else:
         submitted = st.form_submit_button("Kirim")
         if submitted:
             st.success("✅ Pesan berhasil dikirim!")
+
+# 👨‍👩‍👧‍👦 TENTANG KAMI
+if menu == "👨‍👩‍👧‍👦 Tentang Kami":
+    st.title("👨‍👩‍👧‍👦 Tentang Kami")
+
+    st.markdown("""
+    ### 📚 Kelompok 9 - Kelas 1D Analis Kimia
+
+    Kami adalah mahasiswa dari **Politeknik AKA Bogor**, Program Studi **Analis Kimia**, kelas **1D**.  
+    Aplikasi ini adalah hasil kolaborasi dalam proyek pembelajaran interaktif untuk mata kuliah Bahasa Inggris dan Fisika.
+
+    ---
+    #### 👥 Anggota Kelompok:
+    """)
+
+    import pandas as pd
+    data = {
+        "Nama Lengkap": [
+            "🧑‍🔬 Asyafarel Meldy Putra",
+            "🎶 Gleen Fredly Manurung",
+            "🌸 Nur Aisyah",
+            "✨ Vidya Fitriani Dwi Saputri",
+            "💡 Muhammad Revan Fallaq"
+        ],
+        "NIM": ["2460334", "2460379", "2460474", "2460531", "2460428"]
+    }
+    df = pd.DataFrame(data)
+    st.table(df)
+
+    st.markdown("""
+    ---
+    Kami berharap aplikasi ini membantu dalam memahami konsep dasar fisika melalui pendekatan interaktif yang seru dan mudah dipahami 😊
+    """)
