@@ -109,69 +109,52 @@ elif menu == "🧮 Kalkulator":
 # KUIS
 # -----------------------------------
 elif menu == "❓ Kuis":
-    st.title("❓ Kuis Fisika")
+    st.title("❓ Kuis Fisika Tambahan: Gerak dan Gaya")
+    st.markdown("💡 **Petunjuk**: Gunakan Kalkulator Fisika untuk membantu menyelesaikan soal berikut.")
 
     questions = [
         {
-            "q": "Sebuah benda bermassa 10 kg diletakkan di atas lantai datar. Berapakah gaya normalnya?",
-            "options": ["0 N", "10 N", "98 N", "100 N"],
-            "ans": 2
+            "q": "Soal 1: Kapal laut berlayar dengan kecepatan 15 m/s menempuh jarak 900 meter. Waktu yang dibutuhkan?",
+            "options": ["A. 45 detik", "B. 50 detik", "C. 60 detik", "D. 75 detik"],
+            "ans": 2,
+            "explanation": "Waktu = Jarak / Kecepatan = 900 / 15 = 60 detik."
         },
         {
-            "q": "Sebuah benda bermassa 10 kg diletakkan di bidang miring 53°. Gaya normalnya?",
-            "options": ["0 N", "98 N", "59 N", "49 N"],
-            "ans": 2
+            "q": "Soal 2: Sepeda mulai dari 5 m/s dengan percepatan 2 m/s² selama 8 detik. Kecepatan akhirnya?",
+            "options": ["A. 16 m/s", "B. 18 m/s", "C. 20 m/s", "D. 21 m/s"],
+            "ans": 3,
+            "explanation": "v = v₀ + a×t = 5 + (2×8) = 21 m/s."
         },
         {
-            "q": "Sebuah benda 10 kg ditarik gaya 100 N pada sudut 37° terhadap bidang datar. Gaya normalnya?",
-            "options": ["98 N", "80 N", "40 N", "50 N"],
-            "ans": 1
+            "q": "Soal 3: Mobil dari 10 m/s jadi 20 m/s dalam 5 detik. Jarak yang ditempuh?",
+            "options": ["A. 75 m", "B. 80 m", "C. 85 m", "D. 90 m"],
+            "ans": 0,
+            "explanation": "s = ½(v₀ + v)t = ½(10+20)×5 = 75 m."
         },
         {
-            "q": "Benda 10 kg ditarik gaya 100 N sudut 37°, percepatannya jika tanpa gesekan?",
-            "options": ["10 m/s²", "8 m/s²", "6 m/s²", "4 m/s²"],
-            "ans": 1
+            "q": "Soal 4: Benda 20 kg didorong dengan gaya 100 N. Berapa percepatannya?",
+            "options": ["A. 3 m/s²", "B. 4 m/s²", "C. 5 m/s²", "D. 6 m/s²"],
+            "ans": 2,
+            "explanation": "a = F / m = 100 / 20 = 5 m/s²."
         },
         {
-            "q": "Sebuah benda bergerak dengan kecepatan awal 10 m/s selama 20 detik hingga berhenti. Perlambatannya?",
-            "options": ["0.5 m/s²", "1 m/s²", "2 m/s²", "0.25 m/s²"],
-            "ans": 0
-        },
-        {
-            "q": "Jarak yang ditempuh benda pada soal sebelumnya?",
-            "options": ["100 m", "200 m", "150 m", "250 m"],
-            "ans": 0
-        },
-        {
-            "q": "Benda dijatuhkan dari ketinggian 20 meter. Waktu jatuh?",
-            "options": ["1 s", "2 s", "3 s", "4 s"],
-            "ans": 1
-        },
-        {
-            "q": "Kecepatan saat menyentuh tanah (dari 20 m)?",
-            "options": ["10 m/s", "20 m/s", "15 m/s", "5 m/s"],
-            "ans": 1
-        },
-        {
-            "q": "Benda dilempar vertikal ke atas dengan 20 m/s. Waktu ke titik tertinggi?",
-            "options": ["1 s", "2 s", "3 s", "4 s"],
-            "ans": 1
-        },
-        {
-            "q": "Tinggi maksimum dari lemparan vertikal ke atas 20 m/s?",
-            "options": ["10 m", "20 m", "30 m", "40 m"],
-            "ans": 3
+            "q": "Soal 5: Bola 0,5 kg ditendang dengan percepatan 40 m/s². Gaya tendangan?",
+            "options": ["A. 10 N", "B. 15 N", "C. 20 N", "D. 25 N"],
+            "ans": 2,
+            "explanation": "F = m × a = 0.5 × 40 = 20 N."
         },
     ]
 
     for idx, q in enumerate(questions):
-        st.markdown(f"### Soal {idx+1}: {q['q']}")
-        choice = st.radio("", q["options"], key=idx)
+        st.markdown(f"### {q['q']}")
+        choice = st.radio("Pilih jawaban Anda:", q["options"], key=f"quiz{idx}")
         if st.button(f"Jawab Soal {idx+1}"):
             if choice == q["options"][q["ans"]]:
-                st.success("✅ Benar!")
+                st.success("✅ Jawaban Anda benar!")
             else:
-                st.error(f"❌ Salah. Jawaban benar: {q['options'][q['ans']]}")
+                st.error(f"❌ Jawaban Anda salah. Jawaban benar: {q['options'][q['ans']]}")
+            with st.expander("📘 Penjelasan"):
+                st.markdown(q["explanation"])
 
 # -----------------------------------
 # TENTANG
