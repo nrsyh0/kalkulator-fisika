@@ -108,53 +108,127 @@ elif menu == "🧮 Kalkulator":
 # -----------------------------------
 # KUIS
 # -----------------------------------
-if 'show_explanation' not in st.session_state:
-    st.session_state.show_explanation = False
+elif menu == "🧠 Kuis":
+    st.title("🧠 Kuis Fisika Interaktif")
 
-if st.button("Jawab") and not st.session_state.show_explanation:
-    st.session_state.show_explanation = True
-    benar = (selected == q["options"][q["ans"]])
-    st.session_state.answers.append({
-        "soal": q["q"],
-        "jawaban": selected,
-        "benar": benar,
-        "penjelasan": q["penjelasan"],
-        "kunci": q["options"][q["ans"]]
-    })
+    questions = [
+        {
+            "q": "Sebuah benda bermassa 10 kg diletakkan di atas lantai datar. Berapakah gaya normalnya?",
+            "options": ["0 N", "10 N", "98 N", "100 N"],
+            "ans": 2,
+            "penjelasan": "Gaya normal = berat = m × g = 10 × 9.8 = 98 N"
+        },
+        {
+            "q": "Sebuah benda 10 kg di bidang miring 53°. Gaya normalnya?",
+            "options": ["0 N", "98 N", "59 N", "49 N"],
+            "ans": 2,
+            "penjelasan": "N = mg cos(53°) = 10 × 9.8 × 0.6 ≈ 59 N"
+        },
+        {
+            "q": "Benda 10 kg ditarik gaya 100 N pada sudut 37°. Gaya normalnya?",
+            "options": ["98 N", "80 N", "40 N", "50 N"],
+            "ans": 1,
+            "penjelasan": "N = mg - F sin(θ) = 98 - 100×0.6 = 38 N (mendekati 40 N)"
+        },
+        {
+            "q": "Benda 10 kg ditarik gaya 100 N sudut 37°, percepatan tanpa gesekan?",
+            "options": ["10 m/s²", "8 m/s²", "6 m/s²", "4 m/s²"],
+            "ans": 1,
+            "penjelasan": "a = F cos(37°)/m = 100×0.8 / 10 = 8 m/s²"
+        },
+        {
+            "q": "Benda melambat dari 10 m/s selama 20 s hingga berhenti. Perlambatan?",
+            "options": ["0.5 m/s²", "1 m/s²", "2 m/s²", "0.25 m/s²"],
+            "ans": 0,
+            "penjelasan": "a = Δv/t = (0 - 10)/20 = -0.5 m/s²"
+        },
+        {
+            "q": "Jarak yang ditempuh benda di soal sebelumnya?",
+            "options": ["100 m", "200 m", "150 m", "250 m"],
+            "ans": 0,
+            "penjelasan": "s = vt - ½at² = 10×20 - 0.5×0.5×400 = 200 - 100 = 100 m"
+        },
+        {
+            "q": "Benda dijatuhkan dari 20 meter. Waktu jatuhnya?",
+            "options": ["1 s", "2 s", "3 s", "4 s"],
+            "ans": 1,
+            "penjelasan": "t = √(2h/g) = √(40/10) = √4 = 2 s"
+        },
+        {
+            "q": "Kecepatan saat menyentuh tanah (20 m)?",
+            "options": ["10 m/s", "20 m/s", "15 m/s", "5 m/s"],
+            "ans": 1,
+            "penjelasan": "v = √(2gh) = √(2×10×20) = √400 = 20 m/s"
+        },
+        {
+            "q": "Lempar vertikal ke atas 20 m/s. Waktu ke titik tertinggi?",
+            "options": ["1 s", "2 s", "3 s", "4 s"],
+            "ans": 1,
+            "penjelasan": "t = v/g = 20/10 = 2 s"
+        },
+        {
+            "q": "Tinggi maksimum lemparan vertikal 20 m/s?",
+            "options": ["10 m", "20 m", "30 m", "40 m"],
+            "ans": 3,
+            "penjelasan": "h = v² / (2g) = 400 / 20 = 20 m"
+        },
+    ]
 
-    if benar:
-        st.success("✅ Jawaban Benar!")
-        st.session_state.score += 1
-    else:
-        st.error(f"❌ Salah. Jawaban benar: {q['options'][q['ans']]}")
+    if 'quiz_index' not in st.session_state:
+        st.session_state.quiz_index = 0
+        st.session_state.score = 0
+        st.session_state.answers = []
+        st.session_state.show_explanation = False
 
-    st.info(f"📘 Penjelasan: {q['penjelasan']}")
+    idx = st.session_state.quiz_index
+    q = questions[idx]
 
-if st.session_state.show_explanation:
-    if st.session_state.quiz_index + 1 < len(questions):
-        if st.button("➡️ Lanjut ke Soal Berikutnya"):
-            st.session_state.quiz_index += 1
-            st.session_state.show_explanation = False
+    st.markdown(f"### Soal {idx + 1} dari {len(questions)}")
+    selected = st.radio(q["q"], q["options"], key=idx)
+
+    if not st.session_state.show_explanation:
+        if st.button("✅ Jawab"):
+            benar = (selected == q["options"][q["ans"]])
+            st.session_state.answers.append({
+                "soal": q["q"],
+                "jawaban": selected,
+                "benar": benar,
+                "penjelasan": q["penjelasan"],
+                "kunci": q["options"][q["ans"]]
+            })
+
+            if benar:
+                st.success("✅ Jawaban Benar!")
+                st.session_state.score += 1
+            else:
+                st.error(f"❌ Salah. Jawaban benar: {q['options'][q['ans']]}")
+            st.info(f"📘 Penjelasan: {q['penjelasan']}")
+            st.session_state.show_explanation = True
             st.experimental_rerun()
-    else:
-        st.markdown("---")
-        st.success(f"🎉 Kuis selesai! Nilai kamu: {st.session_state.score} / {len(questions)}")
-        st.markdown("### 📖 Ringkasan Jawaban dan Pembahasan:")
-        for i, a in enumerate(st.session_state.answers):
-            st.markdown(f"**Soal {i+1}**")
-            st.write(a["soal"])
-            st.write(f"✅ Jawaban kamu: {a['jawaban']}")
-            if not a["benar"]:
-                st.write(f"📌 Jawaban benar: {a['kunci']}")
-            st.write(f"📘 Penjelasan: {a['penjelasan']}")
+
+    if st.session_state.show_explanation:
+        if idx + 1 < len(questions):
+            if st.button("➡️ Lanjut ke Soal Berikutnya"):
+                st.session_state.quiz_index += 1
+                st.session_state.show_explanation = False
+                st.experimental_rerun()
+        else:
             st.markdown("---")
+            st.success(f"🎉 Kuis selesai! Nilai kamu: {st.session_state.score} / {len(questions)}")
+            st.markdown("### 📖 Ringkasan Jawaban dan Pembahasan:")
+            for i, a in enumerate(st.session_state.answers):
+                st.markdown(f"**Soal {i+1}**")
+                st.write(a["soal"])
+                st.write(f"✅ Jawaban kamu: {a['jawaban']}")
+                if not a["benar"]:
+                    st.write(f"📌 Jawaban benar: {a['kunci']}")
+                st.write(f"📘 Penjelasan: {a['penjelasan']}")
+                st.markdown("---")
 
-        # Tombol ulang
-        if st.button("🔁 Coba Lagi"):
-            for key in ["quiz_index", "score", "answers", "show_explanation"]:
-                del st.session_state[key]
-            st.experimental_rerun()
-
+            if st.button("🔁 Coba Lagi"):
+                for key in ["quiz_index", "score", "answers", "show_explanation"]:
+                    del st.session_state[key]
+                st.experimental_rerun()
 # -----------------------------------
 # TENTANG
 # -----------------------------------
