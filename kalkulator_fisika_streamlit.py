@@ -115,83 +115,69 @@ elif menu == "🧮 Kalkulator":
 # -----------------------------------
 # KUIS
 # -----------------------------------
-if menu == "❓ Kuis":
-    st.title("❓ Kuis Fisika Tambahan: Gerak dan Gaya")
-    st.info("💡 Gunakan Kalkulator Fisika untuk membantu menjawab soal-soal berikut.")
+if menu == "Kuis":
+    st.title("❓ Kuis Fisika Interaktif")
 
-    # Data soal
     questions = [
         {
-            "q": "Sebuah kapal laut berlayar dengan kecepatan konstan 15 m/s. Jika kapal tersebut menempuh jarak 900 meter, Berapakah waktu yang dibutuhkan kapal tersebut (dalam detik)?",
-            "options": ["A. 45 detik", "B. 50 detik", "C. 60 detik", "D. 75 detik"],
+            "q": "Sebuah benda bermassa 10 kg diletakkan di atas lantai datar. Berapakah gaya normalnya?",
+            "options": ["0 N", "10 N", "98 N", "100 N"],
             "ans": 2,
-            "explanation": "Waktu = Jarak / Kecepatan = 900 / 15 = 60 detik."
+            "explanation": "Gaya normal pada bidang datar = berat = m × g = 10 × 9.8 = 98 N"
         },
         {
-            "q": "Sebuah sepeda mulai bergerak dari kecepatan awal 5 m/s dan mengalami percepatan konstan 2 m/s² selama 8 detik. Berapakah kecepatan akhirnya?",
-            "options": ["A. 16 m/s", "B. 18 m/s", "C. 20 m/s", "D. 21 m/s"],
-            "ans": 3,
-            "explanation": "v = v₀ + a.t = 5 + 2×8 = 21 m/s."
-        },
-        {
-            "q": "Sebuah mobil bergerak dengan kecepatan awal 10 m/s. Setelah 5 detik, kecepatannya menjadi 20 m/s. Berapakah jarak yang ditempuh selama 5 detik itu?",
-            "options": ["A. 75 m", "B. 80 m", "C. 85 m", "D. 90 m"],
+            "q": "Sebuah benda bergerak dengan kecepatan awal 10 m/s selama 20 detik hingga berhenti. Perlambatannya?",
+            "options": ["0.5 m/s²", "1 m/s²", "2 m/s²", "0.25 m/s²"],
             "ans": 0,
-            "explanation": "S = ½(v₀ + v)t = ½(10+20)×5 = 75 m."
+            "explanation": "a = (v_t - v_0) / t = (0 - 10) / 20 = -0.5 m/s²"
         },
         {
-            "q": "Sebuah benda bermassa 20 kg didorong dengan gaya sebesar 100 N. Berapa percepatannya?",
-            "options": ["A. 3 m/s²", "B. 4 m/s²", "C. 5 m/s²", "D. 6 m/s²"],
-            "ans": 2,
-            "explanation": "a = F/m = 100/20 = 5 m/s²."
+            "q": "Benda dijatuhkan dari ketinggian 20 meter. Waktu jatuhnya?",
+            "options": ["1 s", "2 s", "3 s", "4 s"],
+            "ans": 1,
+            "explanation": "t = √(2h/g) = √(40/10) = √4 = 2 s"
         },
         {
-            "q": "Seorang atlet menendang bola bermassa 0,5 kg sehingga bola tersebut bergerak dengan percepatan 40 m/s². Berapa besar gaya yang diberikan?",
-            "options": ["A. 10 N", "B. 15 N", "C. 20 N", "D. 25 N"],
-            "ans": 2,
-            "explanation": "F = m.a = 0.5 × 40 = 20 N."
+            "q": "Benda dilempar vertikal ke atas dengan kecepatan 20 m/s. Waktu ke titik tertinggi?",
+            "options": ["1 s", "2 s", "3 s", "4 s"],
+            "ans": 1,
+            "explanation": "t = v/g = 20/10 = 2 s"
         },
     ]
 
-    # Inisialisasi session state
-    if 'quiz_index' not in st.session_state:
+    if "quiz_index" not in st.session_state:
         st.session_state.quiz_index = 0
         st.session_state.score = 0
-        st.session_state.show_result = False
+        st.session_state.next_clicked = False
 
     q = questions[st.session_state.quiz_index]
 
-    st.markdown(f"### Soal {st.session_state.quiz_index + 1}:")
-    st.markdown(q["q"])
+    st.subheader(f"Soal {st.session_state.quiz_index + 1}")
+    pilihan = st.radio(q["q"], q["options"], key=st.session_state.quiz_index)
 
-    pilihan = st.radio("Pilih jawaban:", q["options"], key=st.session_state.quiz_index)
+    if not st.session_state.next_clicked:
+        if st.button("Jawab"):
+            jawaban_benar = q["options"][q["ans"]]
+            if pilihan == jawaban_benar:
+                st.success("✅ Benar!")
+                st.session_state.score += 1
+            else:
+                st.error(f"❌ Salah. Jawaban benar: {jawaban_benar}")
+            with st.expander("📘 Penjelasan"):
+                st.write(q["explanation"])
+            st.session_state.next_clicked = True
 
-    if st.button("Jawab"):
-        benar = q["options"][q["ans"]]
-        if pilihan == benar:
-            st.success(f"✅ Benar!")
-            st.session_state.score += 1
-        else:
-            st.error(f"❌ Salah. Jawaban benar: {benar}")
-
-        with st.expander("📘 Penjelasan"):
-            st.write(q["explanation"])
-
-        st.session_state.show_result = True
-
-    if st.session_state.show_result:
+    if st.session_state.next_clicked:
         if st.session_state.quiz_index < len(questions) - 1:
             if st.button("➡️ Soal Selanjutnya"):
                 st.session_state.quiz_index += 1
-                st.session_state.show_result = False
-                st.experimental_rerun()
+                st.session_state.next_clicked = False
         else:
-            st.success(f"🎉 Kuis selesai! Skor akhir kamu: {st.session_state.score} dari {len(questions)}")
+            st.success(f"🎉 Kuis selesai! Skor kamu: {st.session_state.score} dari {len(questions)}")
             if st.button("🔁 Ulangi Kuis"):
                 st.session_state.quiz_index = 0
                 st.session_state.score = 0
-                st.session_state.show_result = False
-                st.experimental_rerun()
+                st.session_state.next_clicked = False
 
 # -----------------------------------
 # TENTANG
