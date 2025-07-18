@@ -4,14 +4,6 @@ import random
 
 st.set_page_config(page_title="FisiQ-9", layout="centered")
 
-st.markdown("""
-    <style>
-    .main {
-        background-color: #FDF6EC;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
 # Sidebar Navigation
 menu = st.sidebar.radio("🔍 **Navigasi**", ("🏠 Beranda", "🧮 Kalkulator", "❓ Kuis", "ℹ️ Tentang Aplikasi", "👨‍👩‍👧‍👦 Tentang Kami"))
 
