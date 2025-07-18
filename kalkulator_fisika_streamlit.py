@@ -115,69 +115,97 @@ elif menu == "🧮 Kalkulator":
 # -----------------------------------
 # KUIS
 # -----------------------------------
-if menu == "Kuis":
-    st.title("❓ Kuis Fisika Interaktif")
+import streamlit as st
 
-    questions = [
-        {
-            "q": "Sebuah benda bermassa 10 kg diletakkan di atas lantai datar. Berapakah gaya normalnya?",
-            "options": ["0 N", "10 N", "98 N", "100 N"],
-            "ans": 2,
-            "explanation": "Gaya normal pada bidang datar = berat = m × g = 10 × 9.8 = 98 N"
-        },
-        {
-            "q": "Sebuah benda bergerak dengan kecepatan awal 10 m/s selama 20 detik hingga berhenti. Perlambatannya?",
-            "options": ["0.5 m/s²", "1 m/s²", "2 m/s²", "0.25 m/s²"],
-            "ans": 0,
-            "explanation": "a = (v_t - v_0) / t = (0 - 10) / 20 = -0.5 m/s²"
-        },
-        {
-            "q": "Benda dijatuhkan dari ketinggian 20 meter. Waktu jatuhnya?",
-            "options": ["1 s", "2 s", "3 s", "4 s"],
-            "ans": 1,
-            "explanation": "t = √(2h/g) = √(40/10) = √4 = 2 s"
-        },
-        {
-            "q": "Benda dilempar vertikal ke atas dengan kecepatan 20 m/s. Waktu ke titik tertinggi?",
-            "options": ["1 s", "2 s", "3 s", "4 s"],
-            "ans": 1,
-            "explanation": "t = v/g = 20/10 = 2 s"
-        },
-    ]
+st.title("❓ Kuis Fisika")
 
-    if "quiz_index" not in st.session_state:
-        st.session_state.quiz_index = 0
-        st.session_state.score = 0
-        st.session_state.next_clicked = False
+# Soal pilihan ganda lengkap
+questions = [
+    {
+        "q": "Sebuah benda bermassa 10 kg diletakkan di atas lantai datar. Berapakah gaya normalnya?",
+        "options": ["0 N", "10 N", "98 N", "100 N"],
+        "ans": 2
+    },
+    {
+        "q": "Sebuah benda bermassa 10 kg diletakkan di bidang miring 53°. Gaya normalnya?",
+        "options": ["0 N", "98 N", "59 N", "49 N"],
+        "ans": 2
+    },
+    {
+        "q": "Sebuah benda 10 kg ditarik gaya 100 N pada sudut 37° terhadap bidang datar. Gaya normalnya?",
+        "options": ["98 N", "80 N", "40 N", "50 N"],
+        "ans": 1
+    },
+    {
+        "q": "Benda 10 kg ditarik gaya 100 N sudut 37°, percepatannya jika tanpa gesekan?",
+        "options": ["10 m/s²", "8 m/s²", "6 m/s²", "4 m/s²"],
+        "ans": 1
+    },
+    {
+        "q": "Sebuah benda bergerak dengan kecepatan awal 10 m/s selama 20 detik hingga berhenti. Perlambatannya?",
+        "options": ["0.5 m/s²", "1 m/s²", "2 m/s²", "0.25 m/s²"],
+        "ans": 1
+    },
+    {
+        "q": "Jarak yang ditempuh benda pada soal sebelumnya?",
+        "options": ["100 m", "200 m", "150 m", "250 m"],
+        "ans": 0
+    },
+    {
+        "q": "Benda dijatuhkan dari ketinggian 20 meter. Waktu jatuh?",
+        "options": ["1 s", "2 s", "3 s", "4 s"],
+        "ans": 1
+    },
+    {
+        "q": "Kecepatan saat menyentuh tanah (dari 20 m)?",
+        "options": ["10 m/s", "20 m/s", "15 m/s", "5 m/s"],
+        "ans": 1
+    },
+    {
+        "q": "Benda dilempar vertikal ke atas dengan 20 m/s. Waktu ke titik tertinggi?",
+        "options": ["1 s", "2 s", "3 s", "4 s"],
+        "ans": 1
+    },
+    {
+        "q": "Tinggi maksimum dari lemparan vertikal ke atas 20 m/s?",
+        "options": ["10 m", "20 m", "30 m", "40 m"],
+        "ans": 1
+    },
+]
 
-    q = questions[st.session_state.quiz_index]
+# Inisialisasi session state
+if "quiz_idx" not in st.session_state:
+    st.session_state.quiz_idx = 0
+    st.session_state.quiz_score = 0
+    st.session_state.quiz_answered = False
 
-    st.subheader(f"Soal {st.session_state.quiz_index + 1}")
-    pilihan = st.radio(q["q"], q["options"], key=st.session_state.quiz_index)
+# Menampilkan soal saat ini
+if st.session_state.quiz_idx < len(questions):
+    q = questions[st.session_state.quiz_idx]
+    st.subheader(f"Soal {st.session_state.quiz_idx + 1} dari {len(questions)}")
+    choice = st.radio(q["q"], q["options"], key=f"quiz_q{st.session_state.quiz_idx}")
 
-    if not st.session_state.next_clicked:
-        if st.button("Jawab"):
-            jawaban_benar = q["options"][q["ans"]]
-            if pilihan == jawaban_benar:
+    if not st.session_state.quiz_answered:
+        if st.button("✅ Kirim Jawaban"):
+            st.session_state.quiz_answered = True
+            if choice == q["options"][q["ans"]]:
                 st.success("✅ Benar!")
-                st.session_state.score += 1
+                st.session_state.quiz_score += 1
             else:
-                st.error(f"❌ Salah. Jawaban benar: {jawaban_benar}")
-            with st.expander("📘 Penjelasan"):
-                st.write(q["explanation"])
-            st.session_state.next_clicked = True
+                st.error(f"❌ Salah. Jawaban yang benar: {q['options'][q['ans']]}")
+    else:
+        if st.button("➡️ Soal Selanjutnya"):
+            st.session_state.quiz_idx += 1
+            st.session_state.quiz_answered = False
+            st.experimental_rerun()
+else:
+    st.success(f"🎉 Kuis selesai! Skor akhir kamu: {st.session_state.quiz_score} dari {len(questions)}")
+    if st.button("🔁 Ulangi Kuis"):
+        st.session_state.quiz_idx = 0
+        st.session_state.quiz_score = 0
+        st.session_state.quiz_answered = False
+        st.experimental_rerun()
 
-    if st.session_state.next_clicked:
-        if st.session_state.quiz_index < len(questions) - 1:
-            if st.button("➡️ Soal Selanjutnya"):
-                st.session_state.quiz_index += 1
-                st.session_state.next_clicked = False
-        else:
-            st.success(f"🎉 Kuis selesai! Skor kamu: {st.session_state.score} dari {len(questions)}")
-            if st.button("🔁 Ulangi Kuis"):
-                st.session_state.quiz_index = 0
-                st.session_state.score = 0
-                st.session_state.next_clicked = False
 
 # -----------------------------------
 # TENTANG
