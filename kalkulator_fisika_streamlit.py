@@ -69,34 +69,25 @@ elif menu == "🧮 Kalkulator":
                 else:
                     st.error("Waktu tidak boleh 0")
 
+    # DINAMIKA
     with tab2:
-        st.subheader("🧲 Dinamika")
-        jenis = st.selectbox("Pilih jenis perhitungan:", ("Gaya", "Tekanan", "Energi Kinetik"))
-
-        if jenis == "Gaya":
-            massa = st.number_input("Massa (kg)", step=0.1)
-            percepatan = st.number_input("Percepatan (m/s²)", step=0.1)
+        st.header("⚙️ Kalkulator Dinamika")
+        dyn_mode = st.selectbox("Pilih yang ingin dihitung:", ["Gaya (F)", "Tekanan (P)", "Energi Kinetik (Ek)"])
+        if dyn_mode == "Gaya (F)":
+            m = st.number_input("Massa (kg)", step=0.1)
+            a = st.number_input("Percepatan (m/s²)", step=0.1)
             if st.button("Hitung Gaya"):
-                gaya = massa * percepatan
-                st.success(f"Gaya = {gaya} Newton")
-
-        elif jenis == "Tekanan":
-            gaya = st.number_input("Gaya (N)", step=0.1)
-            luas = st.number_input("Luas permukaan (m²)", step=0.01)
-            if st.button("Hitung Tekanan"):
-                if luas != 0:
-                    tekanan = gaya / luas
-                    st.success(f"Tekanan = {tekanan} Pascal")
-                else:
-                    st.error("Luas tidak boleh 0")
-
-        elif jenis == "Energi Kinetik":
-            massa = st.number_input("Massa (kg)", step=0.1)
-            kecepatan = st.number_input("Kecepatan (m/s)", step=0.1)
+                st.success(f"Gaya = {m * a:.2f} Newton")
+        elif dyn_mode == "Tekanan (P)":
+            F = st.number_input("Gaya (N)", step=0.1)
+            A = st.number_input("Luas (m²)", step=0.01)
+            if A != 0 and st.button("Hitung Tekanan"):
+                st.success(f"Tekanan = {F / A:.2f} Pascal")
+        elif dyn_mode == "Energi Kinetik (Ek)":
+            m = st.number_input("Massa (kg)", step=0.1)
+            v = st.number_input("Kecepatan (m/s)", step=0.1)
             if st.button("Hitung Energi Kinetik"):
-                ek = 0.5 * massa * kecepatan**2
-                st.success(f"Energi Kinetik = {ek} Joule")
-
+                st.success(f"Energi Kinetik = {0.5 * m * v**2:.2f} Joule")
     with tab3:
         st.header("📏 Konversi Satuan Fisika")
         jenis = st.selectbox("Jenis Konversi", ["Energi", "Tekanan", "Panjang", "Waktu", "Volume", "Berat"])
