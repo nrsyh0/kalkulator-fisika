@@ -29,6 +29,10 @@ elif menu == "🧮 Kalkulator":
     st.title("🧮 Kalkulator Fisika")
     tab1, tab2, tab3 = st.tabs(["Kinematika", "Dinamika", "Konversi Satuan"])
 
+    elif menu == "🧮 Kalkulator":
+    st.title("🧮 Kalkulator Fisika")
+    tab1, tab2, tab3 = st.tabs(["Kinematika", "Dinamika", "Konversi Satuan"])
+
     # KINEMATIKA
     with tab1:
         st.header("📐 Kalkulator Kinematika")
@@ -74,6 +78,7 @@ elif menu == "🧮 Kalkulator":
             v = st.number_input("Kecepatan (m/s)", step=0.1)
             if st.button("Hitung Energi Kinetik"):
                 st.success(f"Energi Kinetik = {0.5 * m * v**2:.2f} Joule")
+
 
     # KONVERSI SATUAN
     with tab3:
