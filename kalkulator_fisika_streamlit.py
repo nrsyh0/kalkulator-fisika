@@ -248,3 +248,33 @@ else:
         submitted = st.form_submit_button("Kirim")
         if submitted:
             st.success("✅ Pesan berhasil dikirim!")
+
+# 👨‍👩‍👧‍👦 TENTANG KAMI
+# -------------------------------
+if menu == "👨‍👩‍👧‍👦 Tentang Kami":
+    st.title("👨‍👩‍👧‍👦 Tentang Kami")
+
+    st.markdown("""
+    ### 📚 Kelompok 9 - Kelas 1D Analis Kimia
+
+    Kami adalah mahasiswa dari **Politeknik AKA Bogor**, Program Studi **Analis Kimia**, kelas **1D**.  
+    Aplikasi ini adalah hasil kolaborasi dalam proyek pembelajaran interaktif untuk mata kuliah Bahasa Inggris dan Fisika.
+
+    ---
+    #### 👥 Anggota Kelompok:
+    """)
+
+    st.markdown("""
+    | Nama Lengkap                           | NIM       |
+    |----------------------------------------|-----------|
+    | 🧑‍🔬 Asyafarel Meldy Putra             | 2460334   |
+    | 🎶 Gleen Fredly Manurung               | 2460379   |
+    | 🌸 Nur Aisyah                          | 2460474   |
+    | ✨ Vidya Fitriani Dwi Saputri          | 2460531   |
+    | 💡 Muhammad Revan Fallaq               | 2460428   |
+    """)
+
+    st.markdown("""
+    ---
+    Kami berharap aplikasi ini membantu dalam memahami konsep dasar fisika melalui pendekatan interaktif yang seru dan mudah dipahami 😊
+    """)
