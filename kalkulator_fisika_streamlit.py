@@ -91,7 +91,7 @@ elif menu == "🧮 Kalkulator":
 
 
 # ================= HALAMAN KUIS ====================
-elif menu == "🧠 Kuis ":
+elif menu == "🧠 Kuis":
     st.title("🧠 Kuis Fisika Pilihan Ganda")
     st.markdown("Jawab pertanyaan di bawah ini satu per satu. Cek langsung penjelasan setelah menjawab! 🚀")
 
@@ -149,8 +149,10 @@ elif menu == "🧠 Kuis ":
             with st.expander("📘 Penjelasan"):
                 st.markdown(q["explanation"])
 
+    # Tampilkan skor setelah semua soal dijawab
     if all(st.session_state.answered):
         st.info(f"🏁 Kuis selesai! Skor akhir kamu: {st.session_state.score} dari {len(questions)}")
+
 
 # ================= HALAMAN TENTANG APLIKASI ====================
 elif menu == "ℹ️ Tentang Aplikasi":
