@@ -186,22 +186,24 @@ elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
     ### 📚 Kelompok 9 - Kelas 1D Analis Kimia
 
     Kami adalah mahasiswa dari **Politeknik AKA Bogor**, Program Studi **Analis Kimia**, kelas **1D**.  
-    Aplikasi ini adalah hasil kolaborasi dalam proyek pembelajaran interaktif untuk mata kuliah Bahasa Inggris dan Fisika.
+    Aplikasi ini adalah hasil kolaborasi dalam proyek pembelajaran interaktif untuk mata kuliah Fisika.
 
     ---
-
     #### 👥 Anggota Kelompok:
+    """)
 
-    | Nama Lengkap                          | NIM       |
-    |---------------------------------------|-----------|
-    | 🧑‍🔬 Asyafarel Meldy Putra            | 2460334   |
-    | 🎶 Gleen Fredly Manurung              | 2460379   |
-    | 🌸 Nur Aisyah                         | 2460474   |
-    | ✨ Vidya Fitriani Dwi Saputri         | 2460531   |
-    | 💡 Muhammad Revan Fallaq              | 2460428   |
+    st.markdown("""
+    | Nama Lengkap                           | NIM       |
+    |----------------------------------------|-----------|
+    | 🧑‍🔬 Asyafarel Meldy Putra               | 2460334   |
+    | 🎶 Gleen Fredly Manurung               | 2460379   |
+    | 💡 Muhammad Revan Fallaq               | 2460428  |
+    | 🌸 Nur Aisyah                          | 2460474  |
+    | ✨ Vidya Fitriani Dwi Saputri          | 2460531  |
+    """)
 
+    st.markdown("""
     ---
+    Kami berharap aplikasi ini membantu dalam memahami konsep dasar fisika melalui pendekatan interaktif yang seru dan mudah dipahami 😊
 
-    Kami berharap aplikasi ini membantu dalam memahami konsep dasar fisika melalui pendekatan interaktif yang seru dan mudah dipahami 😊  
-    Jika kamu memiliki saran atau masukan, jangan ragu untuk menghubungi kami!
     """)
