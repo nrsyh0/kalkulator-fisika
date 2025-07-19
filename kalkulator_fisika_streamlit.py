@@ -172,7 +172,6 @@ elif menu == "ℹ️ Tentang Aplikasi":
      ### 📩 Hubungi Kami
     Silakan tinggalkan pesan Anda pada kolom berikut.
     """)
-
     with st.form("hubungi"):
         email = st.text_input("Email Anda")
         pesan = st.text_area("Pesan Anda")
