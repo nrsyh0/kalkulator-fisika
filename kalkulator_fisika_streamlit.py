@@ -169,6 +169,16 @@ elif menu == "ℹ️ Tentang Aplikasi":
     - Isi nilai input, tekan tombol "Hitung".
     - Di kuis, pilih jawaban dan lihat hasilnya langsung.
     """)
+     ### 📩 Hubungi Kami
+    Silakan tinggalkan pesan Anda pada kolom berikut.
+    """)
+
+    with st.form("hubungi"):
+        email = st.text_input("Email Anda")
+        pesan = st.text_area("Pesan Anda")
+        submitted = st.form_submit_button("Kirim")
+        if submitted:
+            st.success("✅ Pesan berhasil dikirim!")
 
 elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
     st.title("👨‍👩‍👧‍👦 Tentang Kami")
