@@ -139,9 +139,7 @@ elif menu == "❓ Kuis":
             with st.expander("📘 Penjelasan"):
                 st.markdown(q["explanation"])
 
-# TENTANG
-# -----------------------------------
-elif menu: "ℹ️ Tentang Aplikasi":
+if menu == "ℹ️ Tentang Aplikasi":
     st.title("ℹ️ Tentang Aplikasi")
     st.markdown("""
     ### 🎓 Tujuan Aplikasi
@@ -171,11 +169,11 @@ elif menu: "ℹ️ Tentang Aplikasi":
     ### ❓ Tentang Kuis
     Berisi **soal pilihan ganda** dari materi kinematika, dinamika, dan konversi satuan. Cocok untuk latihan mandiri.
 
-    ---
-    ### 🛠️ Cara Menggunakan
-    1. Pilih menu di **sidebar kiri**.
-    2. Gunakan **Kalkulator** sesuai topik.
-    3. Ikuti **Kuis** untuk menguji pemahamanmu.
+    ### 🔍 Cara Menggunakan Aplikasi
+    - Navigasikan menu di sidebar untuk memilih fitur.
+    - Masukkan data sesuai kebutuhan di tiap kalkulator.
+    - Klik tombol "Hitung" untuk melihat hasil perhitungan.
+    - Gunakan halaman kuis untuk mencoba soal-soal fisika dasar.
 
     ---
     ### 📩 Hubungi Kami
@@ -188,8 +186,8 @@ elif menu: "ℹ️ Tentang Aplikasi":
         submitted = st.form_submit_button("Kirim")
         if submitted:
             st.success("✅ Pesan berhasil dikirim!")
-
-# 👨‍👩‍👧‍👦 TENTANG KAMI
+            
+# ================= HALAMAN TENTANG KAMI ====================
 elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
     st.title("👨‍👩‍👧‍👦 Tentang Kami")
 
@@ -208,13 +206,12 @@ elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
     |----------------------------------------|-----------|
     | 🧑‍🔬 Asyafarel Meldy Putra               | 2460334   |
     | 🎶 Gleen Fredly Manurung               | 2460379   |
-    | 💡 Muhammad Revan Fallaq               | 2460428  |
-    | 🌸 Nur Aisyah                          | 2460474  |
-    | ✨ Vidya Fitriani Dwi Saputri          | 2460531  |
+    | 💡 Muhammad Revan Fallaq               | 2460428   |
+    | 🌸 Nur Aisyah                          | 2460474   |
+    | ✨ Vidya Fitriani Dwi Saputri          | 2460531   |
     """)
 
     st.markdown("""
     ---
     Kami berharap aplikasi ini membantu dalam memahami konsep dasar fisika melalui pendekatan interaktif yang seru dan mudah dipahami 😊
-
     """)
