@@ -128,7 +128,7 @@ elif menu == "❓ Kuis":
         },
     ]
 
-    # Inisialisasi score dan index soal saat pertama kali
+   # Inisialisasi session_state jika belum ada
 if "score" not in st.session_state:
     st.session_state.score = 0
 if "answered" not in st.session_state:
@@ -151,9 +151,10 @@ for idx, q in enumerate(questions):
         with st.expander("📘 Penjelasan"):
             st.markdown(q["explanation"])
 
-# Cek apakah semua soal sudah dijawab
+# Skor akhir ditampilkan setelah semua soal dijawab
 if all(st.session_state.answered):
     st.info(f"🏁 Kuis selesai! Skor akhir kamu: {st.session_state.score} dari {len(questions)}")
+
 
 if menu == "ℹ️ Tentang Aplikasi":
     st.title("ℹ️ Tentang Aplikasi")
