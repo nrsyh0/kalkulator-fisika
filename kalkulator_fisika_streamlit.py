@@ -179,7 +179,7 @@ elif menu == "ℹ️ Tentang Aplikasi":
         if submitted:
             st.success("✅ Pesan berhasil dikirim!")
 
-if menu == "👨‍👩‍👧‍👦 Tentang Kami":
+elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
     st.title("👨‍👩‍👧‍👦 Tentang Kami")
 
     st.markdown("""
@@ -202,6 +202,6 @@ if menu == "👨‍👩‍👧‍👦 Tentang Kami":
 
     ---
 
-    Kami berharap aplikasi ini membantu dalam memahami konsep dasar fisika melalui pendekatan interaktif yang seru dan mudah dipahami 😊
+    Kami berharap aplikasi ini membantu dalam memahami konsep dasar fisika melalui pendekatan interaktif yang seru dan mudah dipahami 😊  
+    Jika kamu memiliki saran atau masukan, jangan ragu untuk menghubungi kami!
     """)
-
