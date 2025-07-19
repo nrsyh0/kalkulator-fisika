@@ -179,9 +179,9 @@ elif menu == "ℹ️ Tentang Aplikasi":
         if submitted:
             st.success("✅ Pesan berhasil dikirim!")
 
+# Menu Tentang Kami
 elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
     st.title("👨‍👩‍👧‍👦 Tentang Kami")
-
     st.markdown("""
     ### 📚 Kelompok 9 - Kelas 1D Analis Kimia
 
@@ -197,13 +197,12 @@ elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
     |----------------------------------------|-----------|
     | 🧑‍🔬 Asyafarel Meldy Putra               | 2460334   |
     | 🎶 Gleen Fredly Manurung               | 2460379   |
-    | 💡 Muhammad Revan Fallaq               | 2460428  |
-    | 🌸 Nur Aisyah                          | 2460474  |
-    | ✨ Vidya Fitriani Dwi Saputri          | 2460531  |
+    | 💡 Muhammad Revan Fallaq               | 2460428   |
+    | 🌸 Nur Aisyah                          | 2460474   |
+    | ✨ Vidya Fitriani Dwi Saputri          | 2460531   |
     """)
 
     st.markdown("""
     ---
     Kami berharap aplikasi ini membantu dalam memahami konsep dasar fisika melalui pendekatan interaktif yang seru dan mudah dipahami 😊
-
     """)
