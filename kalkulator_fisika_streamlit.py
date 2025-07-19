@@ -190,7 +190,7 @@ elif menu: "ℹ️ Tentang Aplikasi":
             st.success("✅ Pesan berhasil dikirim!")
 
 # 👨‍👩‍👧‍👦 TENTANG KAMI
-else menu == "👨‍👩‍👧‍👦 Tentang Kami":
+elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
     st.title("👨‍👩‍👧‍👦 Tentang Kami")
 
     st.markdown("""
