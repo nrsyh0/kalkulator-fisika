@@ -128,20 +128,32 @@ elif menu == "❓ Kuis":
         },
     ]
 
-    for idx, q in enumerate(questions):
-        st.markdown(f"### {q['q']}")
-        choice = st.radio("Pilih jawaban Anda:", q["options"], key=f"quiz{idx}")
-        if st.button(f"Jawab Soal {idx+1}"):
-            if choice == q["options"][q["ans"]]:
-                st.success("✅ Jawaban Anda benar!")
-            if jawaban_benar:
-                score += 1
-            if soal_terakhir:
-                st.success(f"Skor akhir kamu: {score} dari {total_soal}")
-            else:
-                st.error(f"❌ Jawaban Anda salah. Jawaban benar: {q['options'][q['ans']]}")
-            with st.expander("📘 Penjelasan"):
-                st.markdown(q["explanation"])
+    # Inisialisasi score dan index soal saat pertama kali
+if "score" not in st.session_state:
+    st.session_state.score = 0
+if "answered" not in st.session_state:
+    st.session_state.answered = [False] * len(questions)
+
+# Tampilkan soal satu per satu
+for idx, q in enumerate(questions):
+    st.markdown(f"### Soal {idx + 1}: {q['q']}")
+    choice = st.radio("Pilih jawaban Anda:", q["options"], key=f"quiz{idx}")
+
+    if st.button(f"Jawab Soal {idx + 1}", key=f"btn{idx}") and not st.session_state.answered[idx]:
+        st.session_state.answered[idx] = True
+
+        if choice == q["options"][q["ans"]]:
+            st.success("✅ Jawaban Anda benar!")
+            st.session_state.score += 1
+        else:
+            st.error(f"❌ Jawaban Anda salah. Jawaban benar: {q['options'][q['ans']]}")
+
+        with st.expander("📘 Penjelasan"):
+            st.markdown(q["explanation"])
+
+# Cek apakah semua soal sudah dijawab
+if all(st.session_state.answered):
+    st.info(f"🏁 Kuis selesai! Skor akhir kamu: {st.session_state.score} dari {len(questions)}")
 
 if menu == "ℹ️ Tentang Aplikasi":
     st.title("ℹ️ Tentang Aplikasi")
