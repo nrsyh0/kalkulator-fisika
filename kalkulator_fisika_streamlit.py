@@ -128,35 +128,59 @@ elif menu == "❓ Kuis":
         },
     ]
 
-   # Inisialisasi session_state jika belum ada
+ import streamlit as st
+
+# Contoh soal (isi sesuai dengan pertanyaan kamu sebelumnya)
+questions = [
+    {
+        "q": "Sebuah benda diam kemudian bergerak dipercepat hingga kecepatannya 20 m/s dalam waktu 4 sekon. Berapa percepatan benda tersebut?",
+        "options": ["5 m/s²", "10 m/s²", "20 m/s²", "2 m/s²"],
+        "ans": 0,
+        "explanation": "Gunakan rumus percepatan: a = (v2 - v1) / t = (20 - 0) / 4 = 5 m/s²"
+    },
+    # Tambahkan soal lain...
+]
+
+# ======== INISIALISASI =========
 if "score" not in st.session_state:
     st.session_state.score = 0
 if "answered" not in st.session_state:
     st.session_state.answered = [False] * len(questions)
 
-# Tampilkan soal satu per satu
-for idx, q in enumerate(questions):
-    st.markdown(f"### Soal {idx + 1}: {q['q']}")
-    choice = st.radio("Pilih jawaban Anda:", q["options"], key=f"quiz{idx}")
+# ======== MENU NAVIGASI =========
+menu = st.sidebar.selectbox("Pilih Halaman", ["🏠 Dashboard", "🧠 Kuis Fisika", "ℹ️ Tentang Aplikasi", "👨‍👩‍👧‍👦 Tentang Kami"])
 
-    if st.button(f"Jawab Soal {idx + 1}", key=f"btn{idx}") and not st.session_state.answered[idx]:
-        st.session_state.answered[idx] = True
+# ================= HALAMAN DASHBOARD ====================
+if menu == "🏠 Dashboard":
+    st.title("🎉 Selamat Datang di Aplikasi Kalkulator & Kuis Fisika")
+    st.markdown("Gunakan menu di sebelah kiri untuk mulai belajar dan berlatih fisika dengan cara yang seru! 💡")
 
-        if choice == q["options"][q["ans"]]:
-            st.success("✅ Jawaban Anda benar!")
-            st.session_state.score += 1
-        else:
-            st.error(f"❌ Jawaban Anda salah. Jawaban benar: {q['options'][q['ans']]}")
+# ================= HALAMAN KUIS ====================
+elif menu == "🧠 Kuis Fisika":
+    st.title("🧠 Kuis Fisika Pilihan Ganda")
+    st.markdown("Jawab pertanyaan di bawah ini satu per satu. Cek langsung penjelasan setelah menjawab! 🚀")
 
-        with st.expander("📘 Penjelasan"):
-            st.markdown(q["explanation"])
+    for idx, q in enumerate(questions):
+        st.markdown(f"### Soal {idx + 1}: {q['q']}")
+        choice = st.radio("Pilih jawaban Anda:", q["options"], key=f"quiz{idx}")
 
-# Skor akhir ditampilkan setelah semua soal dijawab
-if all(st.session_state.answered):
-    st.info(f"🏁 Kuis selesai! Skor akhir kamu: {st.session_state.score} dari {len(questions)}")
+        if st.button(f"Jawab Soal {idx + 1}", key=f"btn{idx}") and not st.session_state.answered[idx]:
+            st.session_state.answered[idx] = True
 
+            if choice == q["options"][q["ans"]]:
+                st.success("✅ Jawaban Anda benar!")
+                st.session_state.score += 1
+            else:
+                st.error(f"❌ Jawaban Anda salah. Jawaban benar: {q['options'][q['ans']]}")
 
-if menu == "ℹ️ Tentang Aplikasi":
+            with st.expander("📘 Penjelasan"):
+                st.markdown(q["explanation"])
+
+    if all(st.session_state.answered):
+        st.info(f"🏁 Kuis selesai! Skor akhir kamu: {st.session_state.score} dari {len(questions)}")
+
+# ================= HALAMAN TENTANG APLIKASI ====================
+elif menu == "ℹ️ Tentang Aplikasi":
     st.title("ℹ️ Tentang Aplikasi")
     st.markdown("""
     ### 🎓 Tujuan Aplikasi
@@ -203,7 +227,7 @@ if menu == "ℹ️ Tentang Aplikasi":
         submitted = st.form_submit_button("Kirim")
         if submitted:
             st.success("✅ Pesan berhasil dikirim!")
-            
+
 # ================= HALAMAN TENTANG KAMI ====================
 elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
     st.title("👨‍👩‍👧‍👦 Tentang Kami")
