@@ -175,7 +175,12 @@ elif menu == "ℹ️ Tentang Aplikasi":
     - Energi Kinetik = 0.5 × m × v²
 
     #### Konversi Satuan
-    - Energi, Panjang, Tekanan, Waktu, Volume, Berat
+    - Energi (Joule, Kalori, kWh, dll)
+    - Tekanan (Pa, atm, mmHg, dll)
+    - Panjang (meter, km, inch, dll)
+    - Waktu (detik, menit, jam, hari)
+    - Volume (liter, ml, m³)
+    - Berat (gram, kg, mg)
 
     ---
     ### 🧠 Tentang Kuis
