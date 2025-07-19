@@ -139,46 +139,55 @@ elif menu == "❓ Kuis":
             with st.expander("📘 Penjelasan"):
                 st.markdown(q["explanation"])
 
-elif menu == "ℹ️ Tentang Aplikasi":
+# TENTANG
+# -----------------------------------
+else:
     st.title("ℹ️ Tentang Aplikasi")
     st.markdown("""
-    ## 🎯 Tujuan Aplikasi
-    Aplikasi ini dirancang untuk membantu pelajar memahami konsep dasar Fisika melalui:
-    - 💡 Kalkulator interaktif
-    - 📝 Kuis pilihan ganda
-    - 🔁 Konversi satuan fisika
+    ### 🎓 Tujuan Aplikasi
+    Membantu pelajar memahami dan menghitung konsep fisika secara **interaktif** dan **visual**.
 
-    ## 📘 Materi Kalkulator
-    **Kinematika:**
-    - Menghitung jarak, kecepatan, waktu, dan percepatan.
+    ---
+    ### 🔍 Materi KALKULATOR
 
-    **Dinamika:**
-    - Menghitung gaya, tekanan, dan energi kinetik.
+    #### Kinematika
+    - **Jarak (s)**: s = v × t
+    - **Kecepatan (v)**: v = s / t
+    - **Waktu (t)**: t = s / v
+    - **Percepatan (a)**: a = (v2 - v1) / t
 
-    **Konversi:**
-    - Panjang, waktu, energi, tekanan, berat, dan volume.
+    #### Dinamika
+    - **Gaya (F)**: F = m × a
+    - **Tekanan (P)**: P = F / A
+    - **Energi Kinetik**: Ek = 0.5 × m × v²
 
-    ## ❓ Kuis Fisika
-    Berisi soal-soal pilihan ganda tentang:
-    - Gaya normal di bidang datar dan miring
-    - Percepatan benda yang ditarik gaya
-    - Kinematika (gerak vertikal, jatuh bebas)
+    #### Konversi Satuan
+    - Energi (Joule, Kalori, kWh, dll)
+    - Tekanan (Pa, atm, mmHg, dll)
+    - Panjang (meter, km, inch, dll)
+    - Waktu (detik, menit, jam, hari)
 
-    ## 🧾 Cara Penggunaan
-    - Gunakan sidebar untuk berpindah antar fitur.
-    - Isi nilai input, tekan tombol "Hitung".
-    - Di kuis, pilih jawaban dan lihat hasilnya langsung.
-    """)
-     ### 📩 Hubungi Kami
+    ---
+    ### ❓ Tentang Kuis
+    Berisi **soal pilihan ganda** dari materi kinematika, dinamika, dan konversi satuan. Cocok untuk latihan mandiri.
+
+    ---
+    ### 🛠️ Cara Menggunakan
+    1. Pilih menu di **sidebar kiri**.
+    2. Gunakan **Kalkulator** sesuai topik.
+    3. Ikuti **Kuis** untuk menguji pemahamanmu.
+
+    ---
+    ### 📩 Hubungi Kami
     Silakan tinggalkan pesan Anda pada kolom berikut.
     """)
+
     with st.form("hubungi"):
         email = st.text_input("Email Anda")
         pesan = st.text_area("Pesan Anda")
         submitted = st.form_submit_button("Kirim")
         if submitted:
             st.success("✅ Pesan berhasil dikirim!")
-
 elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
     st.title("👨‍👩‍👧‍👦 Tentang Kami")
 
