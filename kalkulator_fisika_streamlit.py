@@ -185,6 +185,7 @@ elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
     st.markdown("""
     ### 📚 Kelompok 9 - Kelas 1D Analis Kimia
 
+    st.markdown("""
     Kami adalah mahasiswa dari **Politeknik AKA Bogor**, Program Studi **Analis Kimia**, kelas **1D**.  
     Aplikasi ini adalah hasil kolaborasi dalam proyek pembelajaran interaktif untuk mata kuliah Fisika.
 
