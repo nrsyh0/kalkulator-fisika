@@ -177,7 +177,7 @@ if menu == "ℹ️ Tentang Aplikasi":
 
     ---
     ### 📩 Hubungi Kami
-    Silakan tinggalkan pesan Anda pada kolom berikut.
+    Silakan tinggalkan pesan Anda pada kolom berikut jika ada saran. 
     """)
 
     with st.form("hubungi"):
@@ -195,7 +195,7 @@ elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
     ### 📚 Kelompok 9 - Kelas 1D Analis Kimia
 
     Kami adalah mahasiswa dari **Politeknik AKA Bogor**, Program Studi **Analis Kimia**, kelas **1D**.  
-    Aplikasi ini adalah hasil kolaborasi dalam proyek pembelajaran interaktif untuk mata kuliah Fisika.
+    Aplikasi ini adalah hasil proyek pembelajaran interaktif untuk mata kuliah Logika dan Pemrograman Komputer.
 
     ---
     #### 👥 Anggota Kelompok:
