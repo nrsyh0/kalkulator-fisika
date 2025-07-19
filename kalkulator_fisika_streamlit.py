@@ -192,13 +192,13 @@ elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
 
     #### 👥 Anggota Kelompok:
 
-    | Nama Lengkap                           | NIM       |
-    |----------------------------------------|-----------|
-    | 🧑‍🔬 Asyafarel Meldy Putra             | 2460334   |
-    | 🎶 Gleen Fredly Manurung               | 2460379   |
-    | 🌸 Nur Aisyah                          | 2460474   |
-    | ✨ Vidya Fitriani Dwi Saputri          | 2460531   |
-    | 💡 Muhammad Revan Fallaq               | 2460428   |
+    | Nama Lengkap                          | NIM       |
+    |---------------------------------------|-----------|
+    | 🧑‍🔬 Asyafarel Meldy Putra            | 2460334   |
+    | 🎶 Gleen Fredly Manurung              | 2460379   |
+    | 🌸 Nur Aisyah                         | 2460474   |
+    | ✨ Vidya Fitriani Dwi Saputri         | 2460531   |
+    | 💡 Muhammad Revan Fallaq              | 2460428   |
 
     ---
 
