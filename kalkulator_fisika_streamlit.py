@@ -97,12 +97,35 @@ elif menu == "🧠 Kuis Fisika":
 
     questions = [
         {
-            "q": "Sebuah benda diam kemudian bergerak dipercepat hingga kecepatannya 20 m/s dalam waktu 4 sekon. Berapa percepatan benda tersebut?",
-            "options": ["5 m/s²", "10 m/s²", "20 m/s²", "2 m/s²"],
-            "ans": 0,
-            "explanation": "Gunakan rumus percepatan: a = (v2 - v1) / t = (20 - 0) / 4 = 5 m/s²"
+            "q": "Soal 1: Kapal laut berlayar dengan kecepatan 15 m/s menempuh jarak 900 meter. Waktu yang dibutuhkan?",
+            "options": ["A. 45 detik", "B. 50 detik", "C. 60 detik", "D. 75 detik"],
+            "ans": 2,
+            "explanation": "Waktu = Jarak / Kecepatan = 900 / 15 = 60 detik."
         },
-        # Tambahkan soal lainnya di sini
+        {
+            "q": "Soal 2: Sepeda mulai dari 5 m/s dengan percepatan 2 m/s² selama 8 detik. Kecepatan akhirnya?",
+            "options": ["A. 16 m/s", "B. 18 m/s", "C. 20 m/s", "D. 21 m/s"],
+            "ans": 3,
+            "explanation": "v = v₀ + a×t = 5 + (2×8) = 21 m/s."
+        },
+        {
+            "q": "Soal 3: Mobil dari 10 m/s jadi 20 m/s dalam 5 detik. Jarak yang ditempuh?",
+            "options": ["A. 75 m", "B. 80 m", "C. 85 m", "D. 90 m"],
+            "ans": 0,
+            "explanation": "s = ½(v₀ + v)t = ½(10+20)×5 = 75 m."
+        },
+        {
+            "q": "Soal 4: Benda 20 kg didorong dengan gaya 100 N. Berapa percepatannya?",
+            "options": ["A. 3 m/s²", "B. 4 m/s²", "C. 5 m/s²", "D. 6 m/s²"],
+            "ans": 2,
+            "explanation": "a = F / m = 100 / 20 = 5 m/s²."
+        },
+        {
+            "q": "Soal 5: Bola 0,5 kg ditendang dengan percepatan 40 m/s². Gaya tendangan?",
+            "options": ["A. 10 N", "B. 15 N", "C. 20 N", "D. 25 N"],
+            "ans": 2,
+            "explanation": "F = m × a = 0.5 × 40 = 20 N."
+        },
     ]
 
     if "score" not in st.session_state:
@@ -129,8 +152,8 @@ elif menu == "🧠 Kuis Fisika":
     if all(st.session_state.answered):
         st.info(f"🏁 Kuis selesai! Skor akhir kamu: {st.session_state.score} dari {len(questions)}")
 
- # ================= HALAMAN TENTANG APLIKASI ====================
- elif menu == "ℹ️ Tentang Aplikasi":
+# ================= HALAMAN TENTANG APLIKASI ====================
+elif menu == "ℹ️ Tentang Aplikasi":
     st.title("ℹ️ Tentang Aplikasi")
     st.markdown("""
     ### 🎓 Tujuan Aplikasi
@@ -155,8 +178,6 @@ elif menu == "🧠 Kuis Fisika":
     - Tekanan (Pa, atm, mmHg, dll)
     - Panjang (meter, km, inch, dll)
     - Waktu (detik, menit, jam, hari)
-    - Volume (liter, ml, m³)
-    - Berat (gram, kg, mg)
 
     ---
     ### ❓ Tentang Kuis
