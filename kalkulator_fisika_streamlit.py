@@ -134,6 +134,10 @@ elif menu == "❓ Kuis":
         if st.button(f"Jawab Soal {idx+1}"):
             if choice == q["options"][q["ans"]]:
                 st.success("✅ Jawaban Anda benar!")
+            if jawaban_benar:
+                score += 1
+            if soal_terakhir:
+                st.success(f"Skor akhir kamu: {score} dari {total_soal}")
             else:
                 st.error(f"❌ Jawaban Anda salah. Jawaban benar: {q['options'][q['ans']]}")
             with st.expander("📘 Penjelasan"):
