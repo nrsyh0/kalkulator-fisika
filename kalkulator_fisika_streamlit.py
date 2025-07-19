@@ -7,9 +7,10 @@ st.set_page_config(page_title="FisiQ-9", layout="centered")
 # Sidebar Navigation
 menu = st.sidebar.radio("🔍 **Navigasi**", ("🏠 Beranda", "🧮 Kalkulator", "🧠 Kuis", "ℹ️ Tentang Aplikasi", "👨‍👩‍👧‍👦 Tentang Kami"))
 
+# ================= HALAMAN BERANDA ====================
 if menu == "🏠 Beranda":
     st.title("🏠 Selamat Datang di FisiQ-9")
-    st.image("fisika.jpg", use_container_width="centered")
+    st.image("fisika.jpg", use_container_width=True)
     st.markdown("""
     ## 👋 Halo!
     Selamat datang di aplikasi interaktif untuk belajar Fisika dengan cara yang seru dan menyenangkan.
@@ -17,6 +18,7 @@ if menu == "🏠 Beranda":
     Aplikasi ini dirancang khusus untuk membantu siswa ataupun mahasiswa memahami konsep dasar fisika melalui kalkulasi, konversi satuan, dan kuis interaktif. Pilih menu di sebelah kiri untuk mulai menggunakan kalkulator dan mencoba kuis.
     """)
 
+# ================= HALAMAN KALKULATOR ====================
 elif menu == "🧮 Kalkulator":
     st.title("🧮 Kalkulator Fisika")
     tab1, tab2, tab3 = st.tabs(["Kinematika", "Dinamika", "Konversi Satuan"])
@@ -67,6 +69,7 @@ elif menu == "🧮 Kalkulator":
             if st.button("Hitung Energi Kinetik", key="hitung_ek"):
                 energi_kinetik = 0.5 * m * v**2
                 st.success(f"Energi Kinetik = {energi_kinetik:.2f} Joule")
+
     # KONVERSI SATUAN
     with tab3:
         st.header("📏 Konversi Satuan Fisika")
@@ -88,7 +91,6 @@ elif menu == "🧮 Kalkulator":
         if st.button("Konversi"):
             hasil = val * satuan_dict[jenis][from_unit] / satuan_dict[jenis][to_unit]
             st.success(f"Hasil: {hasil:.4f} {to_unit}")
-
 
 # ================= HALAMAN KUIS ====================
 elif menu == "🧠 Kuis":
@@ -139,7 +141,6 @@ elif menu == "🧠 Kuis":
 
         if st.button(f"Jawab Soal {idx + 1}", key=f"btn{idx}") and not st.session_state.answered[idx]:
             st.session_state.answered[idx] = True
-
             if choice == q["options"][q["ans"]]:
                 st.success("✅ Jawaban Anda benar!")
                 st.session_state.score += 1
@@ -149,10 +150,8 @@ elif menu == "🧠 Kuis":
             with st.expander("📘 Penjelasan"):
                 st.markdown(q["explanation"])
 
-    # Tampilkan skor setelah semua soal dijawab
     if all(st.session_state.answered):
         st.info(f"🏁 Kuis selesai! Skor akhir kamu: {st.session_state.score} dari {len(questions)}")
-
 
 # ================= HALAMAN TENTANG APLIKASI ====================
 elif menu == "ℹ️ Tentang Aplikasi":
@@ -161,52 +160,40 @@ elif menu == "ℹ️ Tentang Aplikasi":
     ### 🎓 Tujuan Aplikasi
     Membantu pelajar memahami dan menghitung konsep fisika secara **interaktif** dan **visual**.
 
-    ---
+    --- 
     ### 🔍 Materi KALKULATOR
 
     #### Kinematika
-    - **Jarak (s)**: s = v × t
-    - **Kecepatan (v)**: v = s / t
-    - **Waktu (t)**: t = s / v
-    - **Percepatan (a)**: a = (v2 - v1) / t
+    - Jarak (s) = v × t
+    - Kecepatan (v) = s / t
+    - Waktu (t) = s / v
+    - Percepatan (a) = (v2 - v1) / t
 
     #### Dinamika
-    - **Gaya (F)**: F = m × a
-    - **Tekanan (P)**: P = F / A
-    - **Energi Kinetik**: Ek = 0.5 × m × v²
+    - Gaya (F) = m × a
+    - Tekanan (P) = F / A
+    - Energi Kinetik = 0.5 × m × v²
 
     #### Konversi Satuan
-    - Energi (Joule, Kalori, kWh, dll)
-    - Tekanan (Pa, atm, mmHg, dll)
-    - Panjang (meter, km, inch, dll)
-    - Waktu (detik, menit, jam, hari)
+    - Energi, Panjang, Tekanan, Waktu, Volume, Berat
 
     ---
     ### 🧠 Tentang Kuis
-    Berisi **soal pilihan ganda** dari materi kinematika, dinamika, dan konversi satuan. Cocok untuk latihan mandiri.
-
-    ### 🔍 Cara Menggunakan Aplikasi
-    - Navigasikan menu di sidebar untuk memilih fitur.
-    - Masukkan data sesuai kebutuhan di tiap kalkulator.
-    - Klik tombol "Hitung" untuk melihat hasil perhitungan.
-    - Gunakan halaman kuis untuk mencoba soal-soal fisika dasar.
+    Berisi soal pilihan ganda dari materi kinematika, dinamika, dan konversi satuan.
 
     ---
     ### 📩 Hubungi Kami
-    Silakan tinggalkan pesan Anda pada kolom berikut jika ada saran. 
     """)
 
     with st.form("hubungi"):
         email = st.text_input("Email Anda")
         pesan = st.text_area("Pesan Anda")
-        submitted = st.form_submit_button("Kirim")
-        if submitted:
+        if st.form_submit_button("Kirim"):
             st.success("✅ Pesan berhasil dikirim!")
 
 # ================= HALAMAN TENTANG KAMI ====================
 elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
     st.title("👨‍👩‍👧‍👦 Tentang Kami")
-
     st.markdown("""
     ### 📚 Kelompok 9 - Kelas 1D Analis Kimia
 
@@ -215,9 +202,6 @@ elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
 
     ---
     #### 👥 Anggota Kelompok:
-    """)
-
-    st.markdown("""
     | Nama Lengkap                           | NIM       |
     |----------------------------------------|-----------|
     | 🧑‍🔬 Asyafarel Meldy Putra               | 2460334   |
@@ -225,9 +209,7 @@ elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
     | 💡 Muhammad Revan Fallaq               | 2460428   |
     | 🌸 Nur Aisyah                          | 2460474   |
     | ✨ Vidya Fitriani Dwi Saputri          | 2460531   |
-    """)
 
-    st.markdown("""
     ---
     Kami berharap aplikasi ini membantu dalam memahami konsep dasar fisika melalui pendekatan interaktif yang seru dan mudah dipahami 😊
     """)
