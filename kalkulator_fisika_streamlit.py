@@ -5,7 +5,7 @@ import random
 st.set_page_config(page_title="FisiQ-9", layout="centered")
 
 # Sidebar Navigation
-menu = st.sidebar.radio("🔍 **Navigasi**", ("🏠 Beranda", "🧮 Kalkulator", "❓ Kuis", "ℹ️ Tentang Aplikasi", "👨‍👩‍👧‍👦 Tentang Kami"))
+menu = st.sidebar.radio("🔍 **Navigasi**", ("🏠 Beranda", "🧮 Kalkulator", "🧠 Kuis", "ℹ️ Tentang Aplikasi", "👨‍👩‍👧‍👦 Tentang Kami"))
 
 if menu == "🏠 Beranda":
     st.title("🏠 Selamat Datang di FisiQ-9")
@@ -91,7 +91,7 @@ elif menu == "🧮 Kalkulator":
 
 
 # ================= HALAMAN KUIS ====================
-elif menu == "🧠 Kuis Fisika":
+elif menu == "🧠 Kuis ":
     st.title("🧠 Kuis Fisika Pilihan Ganda")
     st.markdown("Jawab pertanyaan di bawah ini satu per satu. Cek langsung penjelasan setelah menjawab! 🚀")
 
@@ -180,7 +180,7 @@ elif menu == "ℹ️ Tentang Aplikasi":
     - Waktu (detik, menit, jam, hari)
 
     ---
-    ### ❓ Tentang Kuis
+    ### 🧠 Tentang Kuis
     Berisi **soal pilihan ganda** dari materi kinematika, dinamika, dan konversi satuan. Cocok untuk latihan mandiri.
 
     ### 🔍 Cara Menggunakan Aplikasi
