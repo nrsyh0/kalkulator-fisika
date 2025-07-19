@@ -129,8 +129,8 @@ elif menu == "🧠 Kuis Fisika":
     if all(st.session_state.answered):
         st.info(f"🏁 Kuis selesai! Skor akhir kamu: {st.session_state.score} dari {len(questions)}")
 
-# ================= HALAMAN TENTANG APLIKASI ====================
-elif menu == "ℹ️ Tentang Aplikasi":
+ # ================= HALAMAN TENTANG APLIKASI ====================
+ elif menu == "ℹ️ Tentang Aplikasi":
     st.title("ℹ️ Tentang Aplikasi")
     st.markdown("""
     ### 🎓 Tujuan Aplikasi
