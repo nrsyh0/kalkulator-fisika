@@ -184,7 +184,7 @@ elif menu == "ℹ️ Tentang Aplikasi":
 
     ---
     ### 🧠 Tentang Kuis
-    Berisi soal pilihan ganda dari materi kinematika, dinamika, dan konversi satuan.
+    Berisi soal pilihan ganda dari materi yang masih berhubungan dengan kinematika, dinamika, dan konversi satuan.
 
     ---
     ### 📩 Hubungi Kami
