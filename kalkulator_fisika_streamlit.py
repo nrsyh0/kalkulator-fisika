@@ -5,7 +5,7 @@ import random
 st.set_page_config(page_title="FisiQ-9", layout="centered")
 
 # Sidebar Navigation
-menu = st.sidebar.radio("🔍 **Navigasi**", ("🏠 Beranda", "🧮 Kalkulator", "🧠 Kuis", "ℹ️ Tentang Aplikasi", "👨‍👩‍👧‍👦 Tentang Kami"))
+menu = st.sidebar.radio("🔍 **Navigasi**", ("🏠 Beranda", "🧮 Kalkulator", "🧠 Kuis", "ℹ️ Tentang Aplikasi", "🥼 Tentang Kami"))
 
 # ================= HALAMAN BERANDA ====================
 if menu == "🏠 Beranda":
@@ -197,8 +197,8 @@ elif menu == "ℹ️ Tentang Aplikasi":
             st.success("✅ Pesan berhasil dikirim!")
 
 # ================= HALAMAN TENTANG KAMI ====================
-elif menu == "👨‍👩‍👧‍👦 Tentang Kami":
-    st.title("👨‍👩‍👧‍👦 Tentang Kami")
+elif menu == "🥼 Tentang Kami":
+    st.title("🥼 Tentang Kami")
     st.markdown("""
     ### 📚 Kelompok 9 - Kelas 1D Analis Kimia
 
